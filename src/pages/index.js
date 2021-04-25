@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEffect } from 'react'
 import { createAnimation, render } from '@src/helper/animation'
-import styles from '../styles/Home.module.css'
+import styles from '@src/styles/Home.module.css'
 
 import { getPageBySlug } from '@src/services/page'
 
@@ -28,14 +28,6 @@ export default function Home({page}) {
         <link rel="icon" href="/favicon.ico" />
 				<script type="text/javascript" src="/static/libs/three/three.min.js"></script>
       </Head>
-
-      <main className={styles.main}>
-        <h1 className={styles.title}>Static App - justalk</h1>
-      </main>
-
-      <footer className={styles.footer}>
-        {page.summary}
-      </footer>
     </div>
   )
 }
