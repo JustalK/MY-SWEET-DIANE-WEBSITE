@@ -14,7 +14,7 @@ context('Window', () => {
     cy.contains('h1', 'Histories')
   })
   it('[VISITOR] Access the history page yearly', () => {
-    cy.visit('/Histories/2019')
+    cy.visit('/histories/2019')
     cy.contains('h1', 'Histories 2019')
   })
 })
