@@ -28,7 +28,7 @@ export default function Home({page}) {
         <link rel="icon" href="/favicon.ico" />
 				<script type="text/javascript" src="/static/libs/three/three.min.js"></script>
       </Head>
-			<h1>Moments</h1>
+			<h1>Home</h1>
     </div>
   )
 }

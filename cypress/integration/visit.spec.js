@@ -3,7 +3,7 @@
 context('Window', () => {
   it('[VISITOR] Access the homepage', () => {
     cy.visit('/')
-    cy.contains('h1', 'Static App - justalk')
+    cy.contains('h1', 'Home')
   })
   it('[VISITOR] Access the moment page', () => {
     cy.visit('/moments')
