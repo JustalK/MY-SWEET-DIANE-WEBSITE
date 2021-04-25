@@ -1,0 +1,36 @@
+{
+  "name": "server-static-api",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "test": "start-test dev 3000 cypress:run",
+    "start": "next start",
+    "build": "next build",
+    "build:docs": "npx jsdoc -r ./src ./README.md",
+    "build:wait": "start-test dev 3000 cypress:run",
+    "build:test": "npm run build && start-test start 3000 cypress:run",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open",
+    "cypress:coverage": "check-total --min 100",
+    "postinstall": "husky install"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.3.11",
+    "babel-plugin-istanbul": "^6.0.0",
+    "graphql": "^15.5.0",
+    "graphql-request": "^3.4.0",
+    "husky": "^5.1.2",
+    "next": "10.0.7",
+    "nyc": "^15.1.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "@cypress/code-coverage": "^3.9.2",
+    "check-code-coverage": "^1.10.0",
+    "cypress": "^6.5.0",
+    "jsdoc": "^3.6.6",
+    "start-server-and-test": "^1.12.0"
+  }
+}
