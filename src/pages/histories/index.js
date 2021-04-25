@@ -25,7 +25,7 @@ export async function getStaticProps() {
 const History = ({ histories }) => {
   return (
     <div>
-      <h1>Page</h1>
+      <h1>Histories</h1>
       {histories.map((history, index) => (
         <p key={index}>{history.caption}</p>
       ))}

@@ -36,7 +36,7 @@ const HistoryYear = ({ histories }) => {
 
   return (
     <div>
-      <h1>Page</h1>
+      <h1>Histories {year}</h1>
       {histories.map((history, index) => (
         <p key={index}>{history.caption}</p>
       ))}
