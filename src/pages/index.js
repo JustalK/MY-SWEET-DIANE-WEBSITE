@@ -1,4 +1,6 @@
 import Head from 'next/head'
+import { useEffect } from 'react'
+import { createAnimation, render } from '@src/helper/animation'
 import styles from '../styles/Home.module.css'
 
 import { getPageBySlug } from '@src/services/page'
@@ -14,11 +16,17 @@ export async function getStaticProps() {
 }
 
 export default function Home({page}) {
+
+	useEffect(() => {
+		createAnimation(document.body);
+	}, []);
+
   return (
     <div className={styles.container}>
       <Head>
         <title>Static App - justalk</title>
         <link rel="icon" href="/favicon.ico" />
+				<script type="text/javascript" src="/static/libs/three/three.min.js"></script>
       </Head>
 
       <main className={styles.main}>
