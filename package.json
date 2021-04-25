@@ -12,7 +12,7 @@
     "build:test": "npm run build && start-test start 3000 cypress:run",
     "cypress:run": "cypress run",
     "cypress:open": "cypress open",
-    "cypress:coverage": "check-total --min 100",
+    "cypress:coverage": "check-total --min 75",
     "postinstall": "husky install"
   },
   "dependencies": {

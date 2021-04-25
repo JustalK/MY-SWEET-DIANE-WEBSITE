@@ -4,16 +4,16 @@
 */
 `use strict`
 
-import { getPosts } from '@src/services/post'
+import { getHistories } from '@src/services/history'
 
 /**
 * @function getStaticProps
-* Get all the posts at build time
-* @return {Post[]} All the posts in the database
+* Get all the histories at build time
+* @return {History[]} All the histories in the database
 **/
 /* istanbul ignore next */
 export async function getStaticProps() {
-  return getPosts()
+  return getHistories()
 }
 
 /**
@@ -22,15 +22,15 @@ export async function getStaticProps() {
 * @param {Post[]} posts The list of Post
 * @return {Object} The html of the home
 **/
-const Home = ({ posts }) => {
+const History = ({ histories }) => {
   return (
     <div>
       <h1>Page</h1>
-      {posts.map((post, index) => (
-        <p key={index}>{post.title}</p>
+      {histories.map((history, index) => (
+        <p key={index}>{history.caption}</p>
       ))}
     </div>
   )
 }
 
-export default Home
+export default History
