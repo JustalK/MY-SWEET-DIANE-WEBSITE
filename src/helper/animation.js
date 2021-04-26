@@ -135,7 +135,8 @@ const render = (renderer, scene, camera) => {
 	renderer.render(scene, camera);
 
   horizontalLines.map(horizontalLine => {
-    horizontalLine.position.z -= 2;
+    horizontalLine.position.z = horizontalLine.position.z + 2 >= 30 ? 0 : horizontalLine.position.z + 2;
+
   })
 	window.requestAnimationFrame(function() {
 		render(renderer, scene, camera);
