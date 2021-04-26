@@ -39,21 +39,60 @@ function createBox(scene) {
 	cube.rotation.set(0.4, 0.2, 0);
 }
 
+const range = (start, stop, step) => {
+  return Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
+}
+
 function createBoard(scene, width, height) {
 	const board = new THREE.Group();
-	for(let i=-width/5; i<width/5; i+=width/30) {
-		board.add(createLine(i))
-	}
+  const length = 30;
+  board.dimension = {
+    width: 2*width/5,
+    height: 1000
+  }
+  board.step = {
+    vertical: 30,
+    horizontal: 30
+  }
+  board.limit = {
+    left: -board.dimension.width/2,
+    right: board.dimension.width/2,
+    top: board.dimension.height,
+    bottom: 0
+  }
+  const verticalPositionX = range(board.limit.left, board.limit.right, width/board.step.vertical);
+  const verticalVectors = createVectorsVertical(board.limit.bottom, board.limit.top, verticalPositionX);
+  const horizontalPositionY = range(board.limit.bottom, board.limit.top, board.step.horizontal);
+  const horizontalVectors = createVectorsHorizontal(board.limit.left, board.limit.right, horizontalPositionY);
+  const vectors = [...verticalVectors, ...horizontalVectors];
+  vectors.map(vector => {
+    const line = createLine(vector);
+		board.add(line)
+	})
 	scene.add(board);
 }
 
-function createLine(x) {
+function createVectorsHorizontal(limitLower, limitUpper, positions) {
+  return positions.map(position => [
+    {x: limitLower, y: 0, z: position},
+    {x: limitUpper, y: 0, z: position}
+  ])
+}
+
+function createVectorsVertical(limitLower, limitUpper, positions) {
+  return positions.map(position => [
+    {x: position, y: 0, z: limitLower},
+    {x: position, y: 0, z: limitUpper}
+  ])
+}
+
+function createLine(vectors) {
 	const lineMaterial = new THREE.LineBasicMaterial({color: 0xffffff});
 	const points = [];
-	points.push( new THREE.Vector3( x, 0, 0 ) );
-	points.push( new THREE.Vector3( x, 0, 1000 ) );
-
-	const geometry = new THREE.BufferGeometry().setFromPoints( points );
+  vectors.map(vector => {
+    points.push(new THREE.Vector3(vector.x, vector.y, vector.z));
+  })
+	const geometry = new THREE.BufferGeometry().setFromPoints(points);
 	const line = new THREE.Line( geometry, lineMaterial );
 	return line;
 }
