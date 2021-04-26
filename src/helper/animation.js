@@ -1,11 +1,14 @@
 import { getScreenWidth, getScreenHeight } from '@src/helper/windows'
 
+const horizontalLines = [];
+const verticalLines = [];
+
 export function createAnimation(doc) {
 	const width = getScreenWidth();
 	const height = getScreenHeight();
 	const scene = createScene();
 	createBoard(scene, width, height);
-	const camera = createCamera(scene, width, height, 70, 500);
+	const camera = createCamera(scene, width, height, 70, 1000);
 	const renderer = createRenderer(width, height);
 	doc.appendChild(renderer.domElement);
 	render(renderer, scene, camera);
@@ -14,8 +17,8 @@ export function createAnimation(doc) {
 /**
 * Create the renderer for the three js animation
 **/
-function createRenderer(width, height) {
-	const renderer = new THREE.WebGLRenderer({antialias:true});;
+const createRenderer = (width, height) => {
+	const renderer = new THREE.WebGLRenderer({antialias:true});
 	renderer.setSize(width, height);
 	renderer.setClearColor(0x000000, 1);
 	return renderer;
@@ -24,14 +27,14 @@ function createRenderer(width, height) {
 /**
 * Create the scene for the three js animation
 **/
-function createScene() {
+const createScene = () => {
 	return new THREE.Scene();
 }
 
 /**
 * Create the box
 **/
-function createBox(scene) {
+const createBox = scene => {
 	var boxGeometry = new THREE.BoxGeometry(10, 10, 10);
 	var basicMaterial = new THREE.MeshBasicMaterial({color: 0x0095DD});
 	var cube = new THREE.Mesh(boxGeometry, basicMaterial);
@@ -43,12 +46,11 @@ const range = (start, stop, step) => {
   return Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
 }
 
-function createBoard(scene, width, height) {
+const createBoard = (scene, width, height) => {
 	const board = new THREE.Group();
-  const length = 30;
   board.dimension = {
     width: 2*width/5,
-    height: 1000
+    height: 2000
   }
   board.step = {
     vertical: 30,
@@ -67,26 +69,27 @@ function createBoard(scene, width, height) {
   const vectors = [...verticalVectors, ...horizontalVectors];
   vectors.map(vector => {
     const line = createLine(vector);
+    line.horizontal ? horizontalLines.push(line) : verticalLines.push(line);
 		board.add(line)
 	})
 	scene.add(board);
 }
 
-function createVectorsHorizontal(limitLower, limitUpper, positions) {
+const createVectorsHorizontal = (limitLower, limitUpper, positions) => {
   return positions.map(position => [
-    {x: limitLower, y: 0, z: position},
-    {x: limitUpper, y: 0, z: position}
+    {x: limitLower, y: 0, z: position, horizontal: true},
+    {x: limitUpper, y: 0, z: position, horizontal: true}
   ])
 }
 
-function createVectorsVertical(limitLower, limitUpper, positions) {
+const createVectorsVertical = (limitLower, limitUpper, positions) => {
   return positions.map(position => [
-    {x: position, y: 0, z: limitLower},
-    {x: position, y: 0, z: limitUpper}
+    {x: position, y: 0, z: limitLower, vertical: true},
+    {x: position, y: 0, z: limitUpper, vertical: true}
   ])
 }
 
-function createLine(vectors) {
+const createLine = (vectors) => {
 	const lineMaterial = new THREE.LineBasicMaterial({color: 0xffffff});
 	const points = [];
   vectors.map(vector => {
@@ -94,14 +97,15 @@ function createLine(vectors) {
   })
 	const geometry = new THREE.BufferGeometry().setFromPoints(points);
 	const line = new THREE.Line( geometry, lineMaterial );
+  line.horizontal = vectors && vectors[0].horizontal;
 	return line;
 }
 
 /**
 * Create a camera for the three js animation
 **/
-function createCamera(scene, width, height, fov, positionZ) {
-	const camera = new THREE.PerspectiveCamera(fov, width/height);
+const createCamera = (scene, width, height, fov, positionZ) => {
+	const camera = new THREE.PerspectiveCamera(fov, width/height, 1, 1000);
 	camera.position.z = positionZ;
 	camera.position.y = 50;
 	camera.lookAt( 0, 0, 0 );
@@ -109,7 +113,7 @@ function createCamera(scene, width, height, fov, positionZ) {
 	return camera;
 }
 
-function createLight(scene) {
+const createLight = (scene) => {
 	const lights = [];
 	lights[ 0 ] = new PointLight( 0xffffff, 1, 0 );
 	lights[ 1 ] = new PointLight( 0xffffff, 1, 0 );
@@ -127,8 +131,12 @@ function createLight(scene) {
 /**
 * Create the render
 **/
-function render(renderer, scene, camera) {
+const render = (renderer, scene, camera) => {
 	renderer.render(scene, camera);
+
+  horizontalLines.map(horizontalLine => {
+    horizontalLine.position.z -= 2;
+  })
 	window.requestAnimationFrame(function() {
 		render(renderer, scene, camera);
 	});
