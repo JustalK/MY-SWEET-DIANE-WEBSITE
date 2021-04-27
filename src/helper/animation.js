@@ -8,6 +8,8 @@ export function createAnimation(doc) {
 	const height = getScreenHeight();
 	const scene = createScene();
 	createBoard(scene, width, height);
+  //createLight(scene);
+  fog(scene);
 	const camera = createCamera(scene, width, height, 70, 1000);
 	const renderer = createRenderer(width, height);
 	doc.appendChild(renderer.domElement);
@@ -29,6 +31,13 @@ const createRenderer = (width, height) => {
 **/
 const createScene = () => {
 	return new THREE.Scene();
+}
+
+const fog = scene => {
+  const color = 0x000000;
+  const near = 100;
+  const far = 500;
+  scene.fog = new THREE.Fog(color, near, far);
 }
 
 /**
@@ -91,7 +100,7 @@ const createVectorsVertical = (limitLower, limitUpper, positions) => {
 
 const createLine = (vectors) => {
 	const lineMaterial = new THREE.LineBasicMaterial({color: 0xffffff});
-	const points = [];
+  const points = [];
   vectors.map(vector => {
     points.push(new THREE.Vector3(vector.x, vector.y, vector.z));
   })
@@ -115,17 +124,10 @@ const createCamera = (scene, width, height, fov, positionZ) => {
 
 const createLight = (scene) => {
 	const lights = [];
-	lights[ 0 ] = new PointLight( 0xffffff, 1, 0 );
-	lights[ 1 ] = new PointLight( 0xffffff, 1, 0 );
-	lights[ 2 ] = new PointLight( 0xffffff, 1, 0 );
+	lights[0] = new THREE.PointLight( 0xffffff, 0.1, 0 );
 
 	lights[ 0 ].position.set( 0, 200, 0 );
-	lights[ 1 ].position.set( 100, 200, 100 );
-	lights[ 2 ].position.set( - 100, - 200, - 100 );
-
-	scene.add( lights[ 0 ] );
-	scene.add( lights[ 1 ] );
-	scene.add( lights[ 2 ] );
+	scene.add( lights[0] );
 }
 
 /**
