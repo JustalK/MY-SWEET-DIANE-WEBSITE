@@ -2,28 +2,40 @@ import { getScreenWidth, getScreenHeight } from '@src/helper/windows'
 import { getRandomColor } from '@src/helper/random'
 import { getRange } from '@src/helper/utils'
 
-const horizontalLines = [];
-const verticalLines = [];
+const constants = {};
+
+const initConstants = () => {
+  constants.usLineMaterial = new THREE.LineBasicMaterial({color: '#FF00FF', linewidth: 20});
+  constants.width = getScreenWidth();
+  constants.height = getScreenHeight();
+  constants.horizontalLines = [];
+  constants.verticalLines = [];
+  constants.camera = null;
+  constants.scene = null;
+  constants.board = null;
+  constants.usLine = null;
+  constants.fov = 70;
+}
 
 export function createAnimation(doc) {
-	const width = getScreenWidth();
-	const height = getScreenHeight();
-	const scene = createScene();
-	createBoard(scene, width, height);
+  initConstants();
+	createScene();
+	createBoard();
+  createUsLine()
   //createLight(scene);
-  fog(scene);
-	const camera = createCamera(scene, width, height, 70, 1000);
-	const renderer = createRenderer(width, height);
+  fog();
+	const camera = createCamera(1000);
+	const renderer = createRenderer();
 	doc.appendChild(renderer.domElement);
-	render(renderer, scene, camera);
+	render(renderer);
 }
 
 /**
 * Create the renderer for the three js animation
 **/
-const createRenderer = (width, height) => {
+const createRenderer = () => {
 	const renderer = new THREE.WebGLRenderer({antialias:true});
-	renderer.setSize(width, height);
+	renderer.setSize(constants.width, constants.height);
 	renderer.setClearColor(0x000000, 1);
 	return renderer;
 }
@@ -32,20 +44,20 @@ const createRenderer = (width, height) => {
 * Create the scene for the three js animation
 **/
 const createScene = () => {
-	return new THREE.Scene();
+	constants.scene = new THREE.Scene();
 }
 
-const fog = scene => {
+const fog = () => {
   const color = 0x000000;
   const near = 0;
   const far = 500;
-  scene.fog = new THREE.Fog(color, near, far);
+  constants.scene.fog = new THREE.Fog(color, near, far);
 }
 
-const createBoard = (scene, width, height) => {
+const createBoard = () => {
 	const board = new THREE.Group();
   board.dimension = {
-    width: 2*width,
+    width: 2*constants.width,
     height: 2000
   }
   board.step = {
@@ -58,17 +70,18 @@ const createBoard = (scene, width, height) => {
     top: board.dimension.height,
     bottom: 0
   }
-  const verticalPositionX = getRange(board.limit.left, board.limit.right, width/board.step.vertical);
+  const verticalPositionX = getRange(board.limit.left, board.limit.right, constants.width/board.step.vertical);
   const verticalVectors = createVectorsVertical(board.limit.bottom, board.limit.top, verticalPositionX);
   const horizontalPositionY = getRange(board.limit.bottom, board.limit.top, board.step.horizontal);
   const horizontalVectors = createVectorsHorizontal(board.limit.left, board.limit.right, horizontalPositionY);
   const vectors = [...verticalVectors, ...horizontalVectors];
   vectors.map(vector => {
     const line = createLine(vector);
-    line.horizontal ? horizontalLines.push(line) : verticalLines.push(line);
+    line.horizontal ? constants.horizontalLines.push(line) : constants.verticalLines.push(line);
 		board.add(line)
 	})
-	scene.add(board);
+	constants.scene.add(board);
+  constants.board = board;
 }
 
 const createVectorsHorizontal = (limitLower, limitUpper, positions) => {
@@ -86,7 +99,7 @@ const createVectorsVertical = (limitLower, limitUpper, positions) => {
 }
 
 const createLine = (vectors) => {
-	const lineMaterial = new THREE.LineBasicMaterial({color: getRandomColor()});
+	const lineMaterial = new THREE.LineBasicMaterial({color: '#FFFFFF'});
   const points = [];
   vectors.map(vector => {
     points.push(new THREE.Vector3(vector.x, vector.y, vector.z));
@@ -97,16 +110,31 @@ const createLine = (vectors) => {
 	return line;
 }
 
+const createUsLine = () => {
+  const vectors = [
+    {x: 0, y: 0, z: constants.board.limit.top},
+    {x: 0, y: 0, z: 0}
+  ];
+  const points = [];
+  vectors.map(vector => {
+    points.push(new THREE.Vector3(vector.x, vector.y, vector.z));
+  })
+	const geometry = new THREE.BufferGeometry().setFromPoints(points);
+	const line = new THREE.Line( geometry, constants.usLineMaterial );
+	constants.scene.add(line);
+  constants.usLine = line;
+}
+
 /**
 * Create a camera for the three js animation
 **/
-const createCamera = (scene, width, height, fov, positionZ) => {
-	const camera = new THREE.PerspectiveCamera(fov, width/height, 1, 1000);
+const createCamera = (positionZ) => {
+	const camera = new THREE.PerspectiveCamera(constants.fov, constants.width/constants.height, 1, 1000);
 	camera.position.z = positionZ;
 	camera.position.y = 50;
 	camera.lookAt( 0, 0, 0 );
-	scene.add(camera);
-	return camera;
+	constants.scene.add(camera);
+	constants.camera = camera;
 }
 
 const createLight = (scene) => {
@@ -120,13 +148,13 @@ const createLight = (scene) => {
 /**
 * Create the render
 **/
-const render = (renderer, scene, camera) => {
-	renderer.render(scene, camera);
+const render = (renderer) => {
+	renderer.render(constants.scene, constants.camera);
 
-  horizontalLines.map(horizontalLine => {
-    horizontalLine.position.z = horizontalLine.position.z + 2 >= 30 ? 0 : horizontalLine.position.z + 2;
+  constants.horizontalLines.map(horizontalLine => {
+    //horizontalLine.position.z = horizontalLine.position.z + 2 >= 30 ? 0 : horizontalLine.position.z + 2;
   })
 	window.requestAnimationFrame(function() {
-		render(renderer, scene, camera);
+		render(renderer, constants.scene, constants.camera);
 	});
 }
