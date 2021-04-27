@@ -1,4 +1,6 @@
 import { getScreenWidth, getScreenHeight } from '@src/helper/windows'
+import { getRandomColor } from '@src/helper/random'
+import { getRange } from '@src/helper/utils'
 
 const horizontalLines = [];
 const verticalLines = [];
@@ -35,30 +37,15 @@ const createScene = () => {
 
 const fog = scene => {
   const color = 0x000000;
-  const near = 100;
+  const near = 0;
   const far = 500;
   scene.fog = new THREE.Fog(color, near, far);
-}
-
-/**
-* Create the box
-**/
-const createBox = scene => {
-	var boxGeometry = new THREE.BoxGeometry(10, 10, 10);
-	var basicMaterial = new THREE.MeshBasicMaterial({color: 0x0095DD});
-	var cube = new THREE.Mesh(boxGeometry, basicMaterial);
-	scene.add(cube);
-	cube.rotation.set(0.4, 0.2, 0);
-}
-
-const range = (start, stop, step) => {
-  return Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
 }
 
 const createBoard = (scene, width, height) => {
 	const board = new THREE.Group();
   board.dimension = {
-    width: 2*width/5,
+    width: 2*width,
     height: 2000
   }
   board.step = {
@@ -71,9 +58,9 @@ const createBoard = (scene, width, height) => {
     top: board.dimension.height,
     bottom: 0
   }
-  const verticalPositionX = range(board.limit.left, board.limit.right, width/board.step.vertical);
+  const verticalPositionX = getRange(board.limit.left, board.limit.right, width/board.step.vertical);
   const verticalVectors = createVectorsVertical(board.limit.bottom, board.limit.top, verticalPositionX);
-  const horizontalPositionY = range(board.limit.bottom, board.limit.top, board.step.horizontal);
+  const horizontalPositionY = getRange(board.limit.bottom, board.limit.top, board.step.horizontal);
   const horizontalVectors = createVectorsHorizontal(board.limit.left, board.limit.right, horizontalPositionY);
   const vectors = [...verticalVectors, ...horizontalVectors];
   vectors.map(vector => {
@@ -99,7 +86,7 @@ const createVectorsVertical = (limitLower, limitUpper, positions) => {
 }
 
 const createLine = (vectors) => {
-	const lineMaterial = new THREE.LineBasicMaterial({color: 0xffffff});
+	const lineMaterial = new THREE.LineBasicMaterial({color: getRandomColor()});
   const points = [];
   vectors.map(vector => {
     points.push(new THREE.Vector3(vector.x, vector.y, vector.z));
@@ -138,7 +125,6 @@ const render = (renderer, scene, camera) => {
 
   horizontalLines.map(horizontalLine => {
     horizontalLine.position.z = horizontalLine.position.z + 2 >= 30 ? 0 : horizontalLine.position.z + 2;
-
   })
 	window.requestAnimationFrame(function() {
 		render(renderer, scene, camera);
