@@ -1,6 +1,6 @@
 `use strict`
 
-import '../styles/globals.css'
+import styles from '@src/styles/globals.scss'
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />

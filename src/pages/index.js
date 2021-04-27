@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import { useEffect } from 'react'
 import { createAnimation, render } from '@src/helper/animation'
-import styles from '@src/styles/Home.module.css'
+import styles from '@src/styles/Home.module.scss'
 
 import { getPageBySlug } from '@src/services/page'
 
@@ -18,7 +18,7 @@ export async function getStaticProps() {
 export default function Home({page}) {
 
 	useEffect(() => {
-		createAnimation(document.body);
+		//createAnimation(document.body);
 	}, []);
 
   return (
@@ -28,6 +28,13 @@ export default function Home({page}) {
         <link rel="icon" href="/favicon.ico" />
 				<script type="text/javascript" src="/static/libs/three/three.min.js"></script>
       </Head>
+      <main id="HOME">
+        <div>
+          <div id="picture" />
+          <h1 className={styles.title}>{page.title}</h1>
+          <span>{page.summary}</span>
+        </div>
+      </main>
     </div>
   )
 }

@@ -24,7 +24,8 @@
     "next": "10.0.7",
     "nyc": "^15.1.0",
     "react": "17.0.1",
-    "react-dom": "17.0.1"
+    "react-dom": "17.0.1",
+    "sass": "^1.32.11"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.9.2",

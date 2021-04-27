@@ -11,10 +11,11 @@ const initConstants = () => {
   constants.horizontalLines = [];
   constants.verticalLines = [];
   constants.camera = null;
+  constants.fov = 70;
   constants.scene = null;
   constants.board = null;
   constants.usLine = null;
-  constants.fov = 70;
+  constants.usLineDrawing = 2;
 }
 
 export function createAnimation(doc) {
@@ -23,8 +24,8 @@ export function createAnimation(doc) {
 	createBoard();
   createUsLine()
   //createLight(scene);
-  fog();
-	const camera = createCamera(1000);
+  //fog();
+	const camera = createCamera(-10);
 	const renderer = createRenderer();
 	doc.appendChild(renderer.domElement);
 	render(renderer);
@@ -57,8 +58,8 @@ const fog = () => {
 const createBoard = () => {
 	const board = new THREE.Group();
   board.dimension = {
-    width: 2*constants.width,
-    height: 2000
+    width: 2*constants.width/5,
+    height: 500
   }
   board.step = {
     vertical: 30,
@@ -111,18 +112,18 @@ const createLine = (vectors) => {
 }
 
 const createUsLine = () => {
-  const vectors = [
-    {x: 0, y: 0, z: constants.board.limit.top},
-    {x: 0, y: 0, z: 0}
-  ];
+  const lineRange = getRange(0, constants.board.limit.top, 1);
+  const vectors = lineRange.map(z => ({x: 0, y: 0, z}));
   const points = [];
   vectors.map(vector => {
     points.push(new THREE.Vector3(vector.x, vector.y, vector.z));
   })
 	const geometry = new THREE.BufferGeometry().setFromPoints(points);
+  geometry.setDrawRange(0, constants.usLineDrawing);
 	const line = new THREE.Line( geometry, constants.usLineMaterial );
 	constants.scene.add(line);
   constants.usLine = line;
+  console.log(constants.usLine)
 }
 
 /**
@@ -132,7 +133,7 @@ const createCamera = (positionZ) => {
 	const camera = new THREE.PerspectiveCamera(constants.fov, constants.width/constants.height, 1, 1000);
 	camera.position.z = positionZ;
 	camera.position.y = 50;
-	camera.lookAt( 0, 0, 0 );
+	camera.lookAt( 0, 0, constants.board.limit.top );
 	constants.scene.add(camera);
 	constants.camera = camera;
 }
@@ -151,8 +152,13 @@ const createLight = (scene) => {
 const render = (renderer) => {
 	renderer.render(constants.scene, constants.camera);
 
+  if (constants.usLineDrawing <= 120) {
+    constants.usLineDrawing = constants.usLineDrawing + 1 < 1000 ? constants.usLineDrawing + 1 : 1;
+    constants.usLine.geometry.setDrawRange(0, constants.usLineDrawing);
+  }
+
   constants.horizontalLines.map(horizontalLine => {
-    //horizontalLine.position.z = horizontalLine.position.z + 2 >= 30 ? 0 : horizontalLine.position.z + 2;
+    horizontalLine.position.z = horizontalLine.position.z - 1 <= -30 ? 0 : horizontalLine.position.z - 1;
   })
 	window.requestAnimationFrame(function() {
 		render(renderer, constants.scene, constants.camera);
