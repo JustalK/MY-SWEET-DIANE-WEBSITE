@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 import { useEffect } from 'react'
 import { createAnimation, render } from '@src/helper/animation'
 import styles from '@src/styles/Home.module.scss'
@@ -25,15 +26,17 @@ export default function Home ({ page }) {
       <Head>
         <title>Static App - justalk</title>
         <link rel="icon" href="/favicon.ico" />
-				<script type="text/javascript" src="/static/libs/three/three.min.js"></script>
+        <script type="text/javascript" src="/static/libs/three/three.min.js"></script>
       </Head>
-      <main id="HOME">
-        <div>
-          <div id="picture" />
-          <h1 className={styles.title}>{page.title}</h1>
-          <span>{page.summary}</span>
-        </div>
-      </main>
+      <Link href="/histories">
+        <main id={styles.main}>
+          <div>
+            <div className={styles.picture} />
+            <h1 className={styles.title}>{page.title}</h1>
+            <span>{page.summary}</span>
+          </div>
+        </main>
+      </Link>
     </div>
   )
 }

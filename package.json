@@ -19,6 +19,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.11",
     "babel-plugin-istanbul": "^6.0.0",
+    "framer-motion": "^4.1.11",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "husky": "^5.1.2",
