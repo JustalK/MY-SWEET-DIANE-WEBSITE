@@ -2,9 +2,9 @@
 * The home page
 * @module pages/home
 */
-`use strict`
-
 import { getMoments } from '@src/services/moment'
+
+'use strict'
 
 /**
 * @function getStaticProps
@@ -12,7 +12,7 @@ import { getMoments } from '@src/services/moment'
 * @return {Moment[]} All the moment in the database
 **/
 /* istanbul ignore next */
-export async function getStaticProps() {
+export async function getStaticProps () {
   return getMoments()
 }
 

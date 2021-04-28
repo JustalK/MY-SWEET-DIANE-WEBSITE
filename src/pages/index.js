@@ -11,15 +11,14 @@ import { getPageBySlug } from '@src/services/page'
 * @return {Home[]} Get the page in the database
 **/
 /* istanbul ignore next */
-export async function getStaticProps() {
+export async function getStaticProps () {
   return getPageBySlug('home')
 }
 
-export default function Home({page}) {
-
-	useEffect(() => {
-		//createAnimation(document.body);
-	}, []);
+export default function Home ({ page }) {
+  useEffect(() => {
+    // createAnimation(document.body);
+  }, [])
 
   return (
     <div className={styles.container}>

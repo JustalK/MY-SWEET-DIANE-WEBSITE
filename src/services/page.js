@@ -2,8 +2,6 @@
 * The module for managing the request for the page
 * @module services/page
 */
-`use strict`
-
 /**
  * The Page object
  * @typedef {Object} Page
@@ -18,21 +16,21 @@ import graphCmsClient from '@src/services/libs/graphCmsClient'
 * Get the page in the database by the slug
 * @return {Page} Return the page in the database
 **/
-export async function getPageBySlug(slug) {
+export async function getPageBySlug (slug) {
   const { page } = await graphCmsClient.request(
-		`
-		query {
-			page(where: {slug: "${slug}"}) {
-		    summary
+    `
+      query {
+        page(where: {slug: "${slug}"}) {
+          summary
         title
-		  }
+      }
     }
   `
-  );
+  )
 
   return {
     props: {
       page
-    },
-  };
+    }
+  }
 }

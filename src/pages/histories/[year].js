@@ -2,16 +2,16 @@
 * The home page
 * @module pages/home
 */
-`use strict`
-
 import { getHistories } from '@src/services/history'
 import { useRouter } from 'next/router'
 
-export async function getStaticPaths() {
-    return {
-        paths: [], //indicates that no page needs be created at build time
-        fallback: 'blocking' //indicates the type of fallback
-    }
+'use strict'
+
+export async function getStaticPaths () {
+  return {
+    paths: [], // indicates that no page needs be created at build time
+    fallback: 'blocking' // indicates the type of fallback
+  }
 }
 
 /**
@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 * @return {History[]} All the histories in the database
 **/
 /* istanbul ignore next */
-export async function getStaticProps() {
+export async function getStaticProps () {
   return getHistories()
 }
 
@@ -31,7 +31,7 @@ export async function getStaticProps() {
 * @return {Object} The html of the home
 **/
 const HistoryYear = ({ histories }) => {
-	const router = useRouter()
+  const router = useRouter()
   const { year } = router.query
 
   return (

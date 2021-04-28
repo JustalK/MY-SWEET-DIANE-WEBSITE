@@ -2,9 +2,9 @@
 * The home page
 * @module pages/home
 */
-`use strict`
-
 import { getHistories } from '@src/services/history'
+
+'use strict'
 
 /**
 * @function getStaticProps
@@ -12,7 +12,7 @@ import { getHistories } from '@src/services/history'
 * @return {History[]} All the histories in the database
 **/
 /* istanbul ignore next */
-export async function getStaticProps() {
+export async function getStaticProps () {
   return getHistories()
 }
 

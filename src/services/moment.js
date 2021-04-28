@@ -2,8 +2,6 @@
 * The module for managing the request for the moment
 * @module services/moment
 */
-`use strict`
-
 /**
  * The Moment object
  * @typedef {Object} Moment
@@ -19,23 +17,23 @@ import graphCmsClient from '@src/services/libs/graphCmsClient'
 * Get all the moment from graphcms
 * @return {Moment[]} All the moment in the database
 **/
-export async function getMoments() {
+export async function getMoments () {
   const { moments } = await graphCmsClient.request(
     `
-		query {
-			moments {
-		    image {
-		      url
-		    }
-		    caption
-		  }
+    query {
+      moments {
+        image {
+          url
+        }
+        caption
+      }
     }
   `
-  );
+  )
 
   return {
     props: {
       moments
-    },
-  };
+    }
+  }
 }

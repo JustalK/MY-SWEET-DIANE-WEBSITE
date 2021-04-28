@@ -7,6 +7,7 @@
     "test": "start-test dev 3000 cypress:run",
     "start": "next start",
     "build": "next build",
+    "linter": "eslint --fix src --ext .js",
     "build:docs": "npx jsdoc -r ./src ./README.md",
     "build:wait": "start-test dev 3000 cypress:run",
     "build:test": "npm run build && start-test start 3000 cypress:run",
@@ -31,6 +32,12 @@
     "@cypress/code-coverage": "^3.9.2",
     "check-code-coverage": "^1.10.0",
     "cypress": "^6.5.0",
+    "eslint": "^7.25.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "eslint-plugin-react": "^7.23.2",
     "jsdoc": "^3.6.6",
     "start-server-and-test": "^1.12.0"
   }

@@ -2,8 +2,6 @@
 * The module for managing the connection with GraphCMS
 * @module services/libs/graphCmsClient
 */
-`use strict`
-
 import { GraphQLClient } from 'graphql-request'
 
 /**

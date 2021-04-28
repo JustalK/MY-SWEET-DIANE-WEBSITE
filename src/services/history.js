@@ -2,8 +2,6 @@
 * The module for managing the request for the history
 * @module services/history
 */
-`use strict`
-
 /**
  * The History object
  * @typedef {Object} History
@@ -19,24 +17,24 @@ import graphCmsClient from '@src/services/libs/graphCmsClient'
 * Get all the history from graphcms
 * @return {History[]} All the history in the database
 **/
-export async function getHistories() {
+export async function getHistories () {
   const { histories } = await graphCmsClient.request(
     `
     query {
-			histories {
-		    image {
-		      url
-		    }
-				date
-		    caption
-		  }
+      histories {
+        image {
+          url
+        }
+        date
+        caption
+      }
     }
   `
-  );
+  )
 
   return {
     props: {
       histories
-    },
-  };
+    }
+  }
 }
