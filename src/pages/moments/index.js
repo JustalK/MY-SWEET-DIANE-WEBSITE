@@ -4,8 +4,6 @@
 */
 import { getMoments } from '@src/services/moment'
 
-'use strict'
-
 /**
 * @function getStaticProps
 * Get all the moment at build time

@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect } from 'react'
 import { createAnimation, render } from '@src/helper/animation'
+import { ROUTE_MENU } from '@src/constants/routes'
 import styles from '@src/styles/Home.module.scss'
 
 import { getPageBySlug } from '@src/services/page'
@@ -28,7 +29,7 @@ export default function Home ({ page }) {
         <link rel="icon" href="/favicon.ico" />
         <script type="text/javascript" src="/static/libs/three/three.min.js"></script>
       </Head>
-      <Link href="/histories">
+      <Link href={ROUTE_MENU}>
         <main id={styles.main}>
           <div>
             <div className={styles.picture} />

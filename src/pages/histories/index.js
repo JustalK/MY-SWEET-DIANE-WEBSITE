@@ -5,8 +5,6 @@
 import { getHistories } from '@src/services/history'
 import styles from '@src/styles/History.module.scss'
 
-'use strict'
-
 /**
 * @function getStaticProps
 * Get all the histories at build time
