@@ -3,6 +3,7 @@
 * @module pages/home
 */
 import { getHistories } from '@src/services/history'
+import styles from '@src/styles/History.module.scss'
 
 'use strict'
 
@@ -24,7 +25,7 @@ export async function getStaticProps () {
 **/
 const History = ({ histories }) => {
   return (
-    <div>
+    <div className={styles.container}>
       <h1>Histories</h1>
       {histories.map((history, index) => (
         <p key={index}>{history.caption}</p>
