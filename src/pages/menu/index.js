@@ -5,6 +5,7 @@
 import Link from 'next/link'
 import { ROUTE_HISTORIES } from '@src/constants/routes'
 import { getPageBySlug } from '@src/services/page'
+import styles from '@src/styles/Menu.module.scss'
 
 /**
 * @function getStaticProps
@@ -24,12 +25,17 @@ export async function getStaticProps () {
 const Menu = ({ page }) => {
   return (
     <div>
-      <h1>Menu</h1>
+      <h1 className={styles.title}>
+        <span>Menu</span>
+        <span>Menu</span>
+        <span>Menu</span>
+        <span>Menu</span>
+      </h1>
       <Link href={ROUTE_HISTORIES}>
         <div>
-          {page.summary}
-          {page.primaryText}
-          {page.secondaryText}
+          <span>{page.summary}</span>
+          <span>{page.primaryText}</span>
+          <span>{page.secondaryText}</span>
         </div>
       </Link>
     </div>

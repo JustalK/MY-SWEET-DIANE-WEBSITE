@@ -1,0 +1,17 @@
+@import "lib/constants";
+@import "lib/shared";
+
+.title {
+  font-size: 18px;
+  position: relative;
+  background: black;
+  transform: skewY(-8deg);
+  height: 50px;
+  line-height: 50px;
+  overflow: hidden;
+
+  & span {
+    text-transform: uppercase;
+    font-size: 50px;
+  }
+}
