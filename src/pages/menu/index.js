@@ -21,12 +21,16 @@ export async function getStaticProps () {
 * render the menu page
 * @return {Object} The html of the menu page
 **/
-const Menu = () => {
+const Menu = ({ page }) => {
   return (
     <div>
       <h1>Menu</h1>
       <Link href={ROUTE_HISTORIES}>
-        asdasdasd
+        <div>
+          {page.summary}
+          {page.primaryText}
+          {page.secondaryText}
+        </div>
       </Link>
     </div>
   )

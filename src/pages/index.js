@@ -23,7 +23,7 @@ export default function Home ({ page }) {
   }, [])
 
   return (
-    <div className={styles.container}>
+    <div className={styles.page}>
       <Head>
         <title>Static App - justalk</title>
         <link rel="icon" href="/favicon.ico" />

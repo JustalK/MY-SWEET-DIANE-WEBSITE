@@ -22,7 +22,9 @@ export async function getPageBySlug (slug) {
       query {
         page(where: {slug: "${slug}"}) {
           summary
-        title
+          primaryText
+          secondaryText
+          title
       }
     }
   `
