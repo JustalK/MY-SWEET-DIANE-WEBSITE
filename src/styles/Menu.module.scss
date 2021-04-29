@@ -5,13 +5,14 @@
   font-size: 18px;
   position: relative;
   background: black;
-  transform: skewY(-8deg);
-  height: 50px;
-  line-height: 50px;
+  transform: skewY(-17deg);
+  display: flex;
   overflow: hidden;
 
   & span {
     text-transform: uppercase;
     font-size: 50px;
+    transform: translateX(calc(-100% + 20px)) skewX(17deg);
+    display: block;
   }
 }
