@@ -6,6 +6,10 @@ import Link from 'next/link'
 import { ROUTE_HISTORIES } from '@src/constants/routes'
 import { getPageBySlug } from '@src/services/page'
 import styles from '@src/styles/Menu.module.scss'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import React from 'react'
+import Slider from 'react-slick'
 
 /**
 * @function getStaticProps
@@ -47,9 +51,26 @@ const Menu = ({ page }) => {
             <div className={styles.movable}>
               <span>{page.summary}</span>
               <span>{page.primaryText}</span>
-              <span>{page.secondaryText}</span>
-              <span>{page.secondaryText}</span>
-              <span>{page.secondaryText}</span>
+              <Slider>
+                <div>
+                  <h3>1</h3>
+                </div>
+                <div>
+                  <h3>2</h3>
+                </div>
+                <div>
+                  <h3>3</h3>
+                </div>
+                <div>
+                  <h3>4</h3>
+                </div>
+                <div>
+                  <h3>5</h3>
+                </div>
+                <div>
+                  <h3>6</h3>
+                </div>
+              </Slider>
               <span>{page.secondaryText}</span>
             </div>
           </Link>
