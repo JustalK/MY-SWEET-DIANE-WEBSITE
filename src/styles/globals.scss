@@ -1,5 +1,21 @@
 @import "lib/constants";
 
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Oswald'), url(/fonts/Oswald-Regular.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'Open Sans Condensed';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('OpenSansCondensed'), url(/fonts/OpenSansCondensed-Light.woff2) format('woff2');
+}
+
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -26,6 +42,7 @@ body {
 	line-height: 1;
 	color: black;
 	background: white;
+  color: $color-text-primary;
 }
 ol, ul {
 	list-style: none;
@@ -46,16 +63,13 @@ q:before, q:after {
 blockquote, q {
 	quotes: "" "";
 }
-
-body {
-  color: $color-text-primary;
-}
-
 h1 {
   font-size: $font-size-title;
+  font-family: "Oswald";
 }
 
 p, span {
+  font-family: 'Open Sans Condensed', sans-serif;
   font-size: $font-size-text;
 }
 
