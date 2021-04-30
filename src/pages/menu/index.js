@@ -25,19 +25,29 @@ export async function getStaticProps () {
 const Menu = ({ page }) => {
   return (
     <div>
-      <h1 className={styles.title}>
+      <span className={styles.title}>
+        <span>Menu</span>
+        <h1>Menu</h1>
         <span>Menu</span>
         <span>Menu</span>
-        <span>Menu</span>
-        <span>Menu</span>
-      </h1>
-      <Link href={ROUTE_HISTORIES}>
-        <div>
-          <span>{page.summary}</span>
-          <span>{page.primaryText}</span>
-          <span>{page.secondaryText}</span>
+      </span>
+      <div className={styles.menu} />
+      <div className={styles.scroll}>
+        <div className={styles.content}>
+          <div className={styles.borderTop} />
+          <nav className={styles.borderRight} />
+          <Link href={ROUTE_HISTORIES}>
+            <div className={styles.movable}>
+              <span>{page.summary}</span>
+              <span>{page.primaryText}</span>
+              <span>{page.secondaryText}</span>
+              <span>{page.secondaryText}</span>
+              <span>{page.secondaryText}</span>
+              <span>{page.secondaryText}</span>
+            </div>
+          </Link>
         </div>
-      </Link>
+      </div>
     </div>
   )
 }

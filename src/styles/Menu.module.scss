@@ -1,18 +1,68 @@
 @import "lib/constants";
 @import "lib/shared";
 
-.title {
-  font-size: 18px;
-  position: relative;
-  background: black;
-  transform: skewY(-17deg);
-  display: flex;
-  overflow: hidden;
+.content {
+  margin: 0 70px 0 1rem;
+}
 
+.scroll {
+  overflow: scroll;
+  height: 100vh;
+  width: 100%;
+  margin-top: -70px;
+}
+
+.movable {
+  margin-top: 70px;
+}
+
+.borderTop {
+  float: left;
+  width: 100%;
+  height: 250px;
+  shape-outside: polygon(0 22vw, 48vw 0, 0 0);
+}
+
+.borderRight {
+  position: absolute;
+  background: black;
+  width: 50px;
+  height: 100%;
+  right: 0;
+  top: 0;
+}
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  clip-path: polygon(0 25vw, 52vw 0, 0 0);
+  width: 100%;
+  height: 250px;
+  background: #ee0a78;
+  z-index: $layer-subeffect;
+}
+
+.title {
+  position: relative;
+  display: flex;
+  background: black;
+  overflow: hidden;
+  margin-bottom: 20px;
+  font-size: 18px;
+  z-index: $layer-over;
+  transform: skewY(-25deg);
+
+  & h1,
   & span {
+    display: block;
     text-transform: uppercase;
     font-size: 50px;
-    transform: translateX(calc(-100% + 20px)) skewX(17deg);
-    display: block;
+    transform: translateX(calc(-100% + 8vw)) skewX(25deg);
+    color: #f63542;
+  }
+
+  & h1 {
+    color: #ffffff;
   }
 }
