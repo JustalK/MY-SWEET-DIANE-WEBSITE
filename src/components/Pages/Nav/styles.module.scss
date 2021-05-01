@@ -1,0 +1,33 @@
+@import "@src/styles/lib/constants";
+@import "@src/styles/lib/shared";
+
+.nav {
+  position: absolute;
+  overflow: hidden;
+  background: black;
+  width: 50px;
+  height: 100%;
+  right: 0;
+  top: 0;
+
+  & > div {
+    height: 100%;
+    border-right: 2px solid white;
+    border-left: 2px solid white;
+    margin: 0 10px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+
+
+    & > span {
+      display: flex;
+      align-items: center;
+      writing-mode: vertical-rl;
+      text-transform: uppercase;
+      font-size: $font-size-menu;
+      color: $color-pink-main;
+    }
+  }
+}

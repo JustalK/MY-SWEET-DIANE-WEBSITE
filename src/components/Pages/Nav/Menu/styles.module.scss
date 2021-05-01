@@ -1,0 +1,20 @@
+.barMenu {
+  color: #ee0a78;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-decoration: none;
+  padding: 10px 0;
+
+  & svg {
+    transform: rotate(90deg);
+    font-size: 25px;
+  }
+
+  & span {
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    font-family: "Oswald";
+  }
+}

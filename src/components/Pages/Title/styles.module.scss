@@ -1,0 +1,33 @@
+@import "@src/styles/lib/constants";
+@import "@src/styles/lib/shared";
+
+.title {
+  position: relative;
+  background: black;
+  overflow: hidden;
+  margin-bottom: 20px;
+  font-size: 18px;
+  z-index: $layer-over;
+  transform: skewY(-25deg);
+
+  & > div {
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid white;
+    border-top: 2px solid white;
+    margin: 10px 0;
+  }
+
+  & h1,
+  & span {
+    display: block;
+    text-transform: uppercase;
+    font-size: 25px;
+    transform: translateX(calc(-25vw + 25%)) skewX(25deg);
+    color: #f63542;
+  }
+
+  & h1 {
+    color: #ffffff;
+  }
+}
