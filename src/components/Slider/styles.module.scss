@@ -1,6 +1,14 @@
 .slider {
   margin: 20px 0;
 
+  & > div {
+    margin: 0 -1rem;
+    & > div > div > div {
+      margin-right:1rem;
+      margin-left:1rem;
+    }
+  }
+
   & button {
     z-index: 10;
     bottom: 0;

@@ -5,8 +5,14 @@ import 'slick-carousel/slick/slick-theme.css'
 import styles from './styles.module.scss'
 
 const CustomSlider = (props) => {
+  const settings = {
+    infinite: true,
+    speed: 500,
+    autoplaySpeed: 1000,
+    autoplay: true
+  }
   return (
-    <Slider className={styles.slider}>
+    <Slider {...settings} className={styles.slider}>
       {props.children}
     </Slider>
   )
