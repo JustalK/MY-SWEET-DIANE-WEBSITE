@@ -18,14 +18,3 @@
   height: 250px;
   shape-outside: polygon(0 22vw, 48vw 0, 0 0);
 }
-
-.menu {
-  position: absolute;
-  top: 0;
-  left: 0;
-  clip-path: polygon(0 25vw, 52vw 0, 0 0);
-  width: 100%;
-  height: 250px;
-  background: #ee0a78;
-  z-index: $layer-subeffect;
-}

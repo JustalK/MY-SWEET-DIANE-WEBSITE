@@ -1,0 +1,32 @@
+@import "@src/styles/lib/constants";
+@import "@src/styles/lib/shared";
+
+.menu {
+  position: absolute;
+  top: 0;
+  left: 0;
+  clip-path: polygon(0 25vw, 52vw 0, 0 0);
+  width: 100%;
+  height: 250px;
+  background: #ee0a78;
+  z-index: $layer-subeffect;
+
+  & > span {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+
+    & > span {
+      display: flex;
+      align-items: center;
+      justify-items: center;
+      text-transform: uppercase;
+      margin-left: 4px;
+      font-size: 14px;
+      font-family: "Oswald";
+    }
+  }
+}

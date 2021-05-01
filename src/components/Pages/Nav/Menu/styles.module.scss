@@ -1,5 +1,8 @@
+@import "@src/styles/lib/constants";
+@import "@src/styles/lib/shared";
+
 .barMenu {
-  color: #ee0a78;
+  color: $color-pink-main;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,7 +12,7 @@
 
   & svg {
     transform: rotate(90deg);
-    font-size: 25px;
+    font-size: $font-size-menu;
   }
 
   & span {

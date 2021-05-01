@@ -25,17 +25,13 @@ export async function getStaticProps () {
 **/
 const Menu = ({ page }) => {
   return (
-    <CustomPage title="MENU">
+    <CustomPage title={page.slug}>
       <div className={styles.movable}>
         <span>{page.summary}</span>
         <span>{page.primaryText}</span>
         <CustomSlider>
-          <CustomSlide>
-            <h3>1</h3>
-          </CustomSlide>
-          <CustomSlide>
-            <h3>2</h3>
-          </CustomSlide>
+          <CustomSlide legend="Legend of the image 1" src="https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg?ixlib=rb-1.1.0&rect=37%2C29%2C4955%2C3293&q=45&auto=format&w=926&fit=clip" alt="description 1" />
+          <CustomSlide legend="Legend of the image 2" src="https://images.theconversation.com/files/350865/original/file-20200803-24-50u91u.jpg?ixlib=rb-1.1.0&rect=37%2C29%2C4955%2C3293&q=45&auto=format&w=926&fit=clip" alt="description 2" />
         </CustomSlider>
         <span>{page.secondaryText}</span>
       </div>
