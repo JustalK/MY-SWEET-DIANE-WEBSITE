@@ -1,0 +1,17 @@
+.slider {
+  margin: 20px 0;
+
+  & button {
+    z-index: 10;
+    bottom: 0;
+    top: unset;
+    transform: unset;
+
+    &:first-child {
+      left: 0;
+    }
+    &:last-child {
+      right: 0;
+    }
+  }
+}
