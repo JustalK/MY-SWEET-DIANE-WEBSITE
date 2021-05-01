@@ -7,7 +7,8 @@ import { ROUTE_HISTORIES } from '@src/constants/routes'
 import { getPageBySlug } from '@src/services/page'
 import CustomSlider from '@src/components/Slider'
 import CustomSlide from '@src/components/Slider/slides/Main'
-import styles from '@src/styles/Menu.module.scss'
+import { Facebook, Home, EmojiEmotions, Favorite, Folder } from '@material-ui/icons'
+import styles from './styles.module.scss'
 
 /**
 * @function getStaticProps
@@ -43,6 +44,32 @@ const Menu = ({ page }) => {
           <div className={styles.borderTop} />
           <nav className={styles.borderRight}>
             <div>
+              <span>Menu</span>
+              <span>Menu</span>
+              <span>Menu</span>
+              <a href="#" className={styles.barMenu}>
+                <Facebook />
+                <span>Share</span>
+              </a>
+              <a href="#" className={styles.barMenu}>
+                <Home />
+                <span>Home</span>
+              </a>
+              <a href="#" className={styles.barMenu}>
+                <Folder />
+                <span>Menu</span>
+              </a>
+              <a href="#" className={styles.barMenu}>
+                <EmojiEmotions />
+                <span>Histories</span>
+              </a>
+              <a href="#" className={styles.barMenu}>
+                <Favorite />
+                <span>Moments</span>
+              </a>
+              <span>Menu</span>
+              <span>Menu</span>
+              <span>Menu</span>
             </div>
           </nav>
           <Link href={ROUTE_HISTORIES}>

@@ -1,5 +1,5 @@
-@import "lib/constants";
-@import "lib/shared";
+@import "@src/styles/lib/constants";
+@import "@src/styles/lib/shared";
 
 .content {
   margin: 0 70px 0 1rem;
@@ -12,8 +12,30 @@
   margin-top: -70px;
 }
 
+.barMenu {
+  color: #ee0a78;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-decoration: none;
+  padding: 10px 0;
+
+  & svg {
+    transform: rotate(90deg);
+    font-size: 25px;
+  }
+
+  & span {
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    font-family: "Oswald";
+  }
+}
+
 .movable {
   margin-top: 70px;
+  margin-bottom: 70px;
 
   & span {
     line-height: 1.5rem;
@@ -29,6 +51,7 @@
 
 .borderRight {
   position: absolute;
+  overflow: hidden;
   background: black;
   width: 50px;
   height: 100%;
@@ -40,6 +63,15 @@
     border-right: 2px solid white;
     border-left: 2px solid white;
     margin: 0 10px;
+
+    & > span {
+      display: flex;
+      align-items: center;
+      writing-mode: vertical-rl;
+      text-transform: uppercase;
+      font-size: 25px;
+      color: #f63542;
+    }
   }
 }
 

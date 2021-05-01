@@ -8,7 +8,7 @@ const CustomSlider = (props) => {
   const settings = {
     infinite: true,
     speed: 500,
-    autoplaySpeed: 1000,
+    autoplaySpeed: 5000,
     autoplay: true
   }
   return (
