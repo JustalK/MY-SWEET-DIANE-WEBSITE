@@ -3,7 +3,9 @@
 * @module pages/home
 */
 import { getHistories } from '@src/services/history'
-import styles from '@src/styles/History.module.scss'
+import { getPageBySlug } from '@src/services/page'
+import CustomPage from '@src/components/Pages'
+import styles from './styles.module.scss'
 
 /**
 * @function getStaticProps
@@ -12,23 +14,35 @@ import styles from '@src/styles/History.module.scss'
 **/
 /* istanbul ignore next */
 export async function getStaticProps () {
-  return getHistories()
+  const resultPage = getPageBySlug('histories')
+  const resultHistories = getHistories()
+  const result = await Promise.all([resultPage, resultHistories])
+  return {
+    props: {
+      page: result[0].props.page,
+      histories: result[1].props.histories
+    }
+  }
 }
 
 /**
 * @function Home
 * render the home page
-* @param {Post[]} posts The list of Post
+* @param {Post[]} History The list of Post
 * @return {Object} The html of the home
 **/
-const History = ({ histories }) => {
+const History = ({ histories, page }) => {
   return (
-    <div className={styles.container}>
-      <h1>Histories</h1>
-      {histories.map((history, index) => (
+    <CustomPage title={page.slug}>
+      <div className={styles.movable}>
+        <div className={styles.container}>
+        <h1>Histories</h1>
+        {histories.map((history, index) => (
         <p key={index}>{history.caption}</p>
-      ))}
-    </div>
+        ))}
+        </div>
+      </div>
+    </CustomPage>
   )
 }
 

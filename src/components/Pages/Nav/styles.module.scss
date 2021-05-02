@@ -25,6 +25,7 @@
     align-items: center;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 
     & > span {
       display: flex;
@@ -33,6 +34,8 @@
       text-transform: uppercase;
       font-size: $font-size-menu;
       color: $color-orange-main;
+      transform: translateX(100%);
+      transition: all $transition-time-secondary ease $delay-transition-normal;
     }
   }
 }
@@ -41,11 +44,19 @@
 :global(.page-transition-enter) {
   .nav {
     transform: translateY(0);
+
+    & > div > span {
+      transform: translateX(0);
+    }
   }
 }
 
 :global(.page-transition-exit) {
   .nav {
     transition: all $transition-time-after-normal ease $transition-time-normal;
+
+    & > div > span {
+      transition: all $transition-time-normal;
+    }
   }
 }

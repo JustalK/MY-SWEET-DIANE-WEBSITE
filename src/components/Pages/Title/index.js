@@ -6,7 +6,7 @@ const CustomTitle = (props) => {
     <div className={styles.title}>
       <div>
         { Array.from({ length: numberOfElements }, (v, i) => (<span key={i}>{props.title}</span>)) }
-        <h1>Menu</h1>
+        <h1>{props.title}</h1>
         { Array.from({ length: numberOfElements }, (v, i) => (<span key={i}>{props.title}</span>)) }
       </div>
     </div>
