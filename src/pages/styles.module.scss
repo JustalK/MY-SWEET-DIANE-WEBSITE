@@ -1,11 +1,13 @@
-@import "lib/constants";
-@import "lib/shared";
+@import "@src/styles/lib/constants";
+@import "@src/styles/lib/shared";
 
 #main {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  transition: all $transition-time-normal ease;
 
   & > div {
     margin: 0 1rem;
@@ -30,5 +32,17 @@
     text-align: center;
     margin-bottom: 20px;
     text-transform: capitalize;
+  }
+}
+
+:global(.page-transition-enter) {
+  #main {
+    opacity: 0;
+  }
+}
+
+:global(.page-transition-enter-done) {
+  #main {
+    opacity: 1;
   }
 }

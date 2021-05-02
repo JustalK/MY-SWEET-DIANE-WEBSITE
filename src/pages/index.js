@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { useEffect } from 'react'
 import { createAnimation, render } from '@src/helper/animation'
 import { ROUTE_MENU } from '@src/constants/routes'
-import styles from '@src/styles/Home.module.scss'
+import styles from './styles.module.scss'
 
 import { getPageBySlug } from '@src/services/page'
 
