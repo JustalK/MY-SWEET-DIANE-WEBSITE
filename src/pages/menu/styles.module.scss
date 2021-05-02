@@ -4,8 +4,23 @@
 .movable {
   margin-top: 70px;
   margin-bottom: 70px;
+  transform: translateY(100%);
+  transition: all $transition-time-after-normal ease $transition-time-normal;
 
   & span {
     line-height: 1.5rem;
+  }
+}
+
+:global(.page-transition-enter-done),
+:global(.page-transition-enter) {
+  .movable {
+    transform: translateY(0%);
+  }
+}
+
+:global(.page-transition-exit) {
+  .movable {
+    transition: all $transition-time-normal ease;
   }
 }

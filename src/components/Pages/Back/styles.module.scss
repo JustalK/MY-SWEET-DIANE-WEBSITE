@@ -10,6 +10,8 @@
   height: 250px;
   background: $color-pink-main;
   z-index: $layer-subeffect;
+  transform: translateX(-100%);
+  transition: all $transition-time-after-normal ease $transition-time-normal;
 
   & > span {
     position: absolute;
@@ -28,5 +30,18 @@
       font-size: $font-size-back;
       font-family: "Oswald";
     }
+  }
+}
+
+:global(.page-transition-enter-done),
+:global(.page-transition-enter) {
+  .menu {
+    transform: translateX(0);
+  }
+}
+
+:global(.page-transition-exit) {
+  .menu {
+    transition: all $transition-time-normal ease;
   }
 }

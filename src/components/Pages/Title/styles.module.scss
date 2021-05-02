@@ -8,7 +8,8 @@
   margin-bottom: 20px;
   font-size: 18px;
   z-index: $layer-over;
-  transform: skewY(-25deg);
+  transform: translateX(-125%) translateY(-75%);
+  transition: all $transition-time-normal ease;
 
   & > div {
     display: flex;
@@ -30,5 +31,18 @@
   & h1 {
     color: $color-pink-main;
     margin: 0 10px;
+  }
+}
+
+:global(.page-transition-enter-done),
+:global(.page-transition-enter) {
+  .title {
+    transform: skewY(-25deg);
+  }
+}
+
+:global(.page-transition-exit) {
+  .title {
+    transition: all $transition-time-after-normal ease $transition-time-normal;
   }
 }
