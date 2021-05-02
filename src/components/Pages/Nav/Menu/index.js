@@ -1,11 +1,14 @@
 import styles from './styles.module.scss'
+import Link from 'next/link'
 
 const CustomMenu = (props) => {
   return (
-      <a href={props.link} className={styles.barMenu}>
-        {props.children}
-        <span>{props.name}</span>
-      </a>
+      <Link href={props.link}>
+        <span className={styles.barMenu}>
+          {props.children}
+          <span>{props.name}</span>
+        </span>
+      </Link>
   )
 }
 

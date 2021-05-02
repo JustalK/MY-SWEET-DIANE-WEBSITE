@@ -6,7 +6,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: column;
   text-decoration: none;
   padding: 10px 0;
 
@@ -16,6 +15,7 @@
   }
 
   & span {
+    font-size: $font-size-menu;
     text-transform: uppercase;
     writing-mode: vertical-rl;
     font-family: "Oswald";

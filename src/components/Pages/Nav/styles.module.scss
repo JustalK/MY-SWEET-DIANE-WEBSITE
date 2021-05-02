@@ -10,6 +10,10 @@
   right: 0;
   top: 0;
 
+  & .menu {
+    margin: 1rem 0;
+  }
+
   & > div {
     height: 100%;
     border-right: 2px solid white;
@@ -19,7 +23,6 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-
 
     & > span {
       display: flex;

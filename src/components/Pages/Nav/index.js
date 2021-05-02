@@ -1,6 +1,7 @@
 import CustomMenu from './Menu'
 import { Facebook, Home, EmojiEmotions, Favorite, Folder } from '@material-ui/icons'
 import styles from './styles.module.scss'
+import { ROUTE_MENU, ROUTE_HOME, ROUTE_HISTORIES, ROUTE_MOMENTS } from '@src/constants/routes'
 
 const CustomNav = (props) => {
   const numberOfElements = 5
@@ -8,21 +9,23 @@ const CustomNav = (props) => {
     <nav className={styles.nav}>
       <div>
         { Array.from({ length: numberOfElements }, (v, i) => (<span key={i}>{props.title}</span>)) }
-        <CustomMenu name="Facebook" link="#">
-          <Facebook />
-        </CustomMenu>
-        <CustomMenu name="Home" link="#">
-          <Home />
-        </CustomMenu>
-        <CustomMenu name="Menu" link="#">
-          <Folder />
-        </CustomMenu>
-        <CustomMenu name="Histories" link="#">
-          <EmojiEmotions />
-        </CustomMenu>
-        <CustomMenu name="Moments" link="#">
-          <Favorite />
-        </CustomMenu>
+        <span className={styles.menu}>
+          <CustomMenu name="Facebook" link="#">
+            <Facebook />
+          </CustomMenu>
+          <CustomMenu name="Home" link={ROUTE_HOME}>
+            <Home />
+          </CustomMenu>
+          <CustomMenu name="Menu" link={ROUTE_MENU}>
+            <Folder />
+          </CustomMenu>
+          <CustomMenu name="Histories" link={ROUTE_HISTORIES}>
+            <EmojiEmotions />
+          </CustomMenu>
+          <CustomMenu name="Moments" link={ROUTE_MOMENTS}>
+            <Favorite />
+          </CustomMenu>
+        </span>
         { Array.from({ length: numberOfElements }, (v, i) => (<span key={i}>{props.title}</span>)) }
       </div>
     </nav>
