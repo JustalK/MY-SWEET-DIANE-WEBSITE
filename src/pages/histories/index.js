@@ -2,6 +2,7 @@
 * The home page
 * @module pages/home
 */
+import { createRef, useEffect, useCallback } from 'react'
 import { getHistories } from '@src/services/history'
 import { getPageBySlug } from '@src/services/page'
 import CustomPage from '@src/components/Pages'
@@ -33,9 +34,23 @@ export async function getStaticProps () {
 * @return {Object} The html of the home
 **/
 const History = ({ histories, page }) => {
+  const ref = createRef()
+
+  const handleScroll = useCallback(() => {
+    console.log('AAA')
+  }, [])
+
+  useEffect(() => {
+    ref.current.addEventListener('scroll', handleScroll)
+    return () => {
+      if (ref && ref.current) {
+        ref.current.removeEventListener('scroll', handleScroll)
+      }
+    }
+  }, [ref])
 
   return (
-    <CustomPage title={page.slug}>
+    <CustomPage title={page.slug} ref={ref}>
       <div className={styles.movable}>
         <span>Histories lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</span>
         {histories.map((history, index) => (
