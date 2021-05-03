@@ -5,6 +5,7 @@
 import { getHistories } from '@src/services/history'
 import { getPageBySlug } from '@src/services/page'
 import CustomPage from '@src/components/Pages'
+import CustomBadge from '@src/components/Badge'
 import styles from './styles.module.scss'
 
 /**
@@ -35,12 +36,10 @@ const History = ({ histories, page }) => {
   return (
     <CustomPage title={page.slug}>
       <div className={styles.movable}>
-        <div className={styles.container}>
-        <h1>Histories</h1>
+        <span>Histories lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</span>
         {histories.map((history, index) => (
-        <p key={index}>{history.caption}</p>
+          <CustomBadge key={index} caption={history.caption} date={history.date} image={history.image} />
         ))}
-        </div>
       </div>
     </CustomPage>
   )
