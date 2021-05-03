@@ -15,7 +15,7 @@
         border-bottom-right-radius: 50px;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 50px;
-        border: 1px solid #fe6408;
+        border: 1px solid white;
       }
     }
 
@@ -30,7 +30,7 @@
       left: 10px;
       background: #fe6408;
       padding: 0 15px;
-      border: 1px solid #fe6408;
+      border: 1px solid white;
     }
 
     & .caption {
@@ -46,6 +46,7 @@
       text-align: right;
       margin-top: 25px;
       margin-bottom: 25px;
+      border: 1px solid white;
     }
   }
 }

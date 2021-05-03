@@ -16,7 +16,7 @@ import styles from './styles.module.scss'
 /* istanbul ignore next */
 export async function getStaticProps () {
   const resultPage = getPageBySlug('histories')
-  const resultHistories = getHistories()
+  const resultHistories = getHistories({})
   const result = await Promise.all([resultPage, resultHistories])
   return {
     props: {
@@ -33,6 +33,7 @@ export async function getStaticProps () {
 * @return {Object} The html of the home
 **/
 const History = ({ histories, page }) => {
+
   return (
     <CustomPage title={page.slug}>
       <div className={styles.movable}>

@@ -19,7 +19,7 @@ export async function getStaticPaths () {
 **/
 /* istanbul ignore next */
 export async function getStaticProps () {
-  return getHistories()
+  return getHistories({})
 }
 
 /**

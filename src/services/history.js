@@ -17,11 +17,11 @@ import graphCmsClient from '@src/services/libs/graphCmsClient'
 * Get all the history from graphcms
 * @return {History[]} All the history in the database
 **/
-export async function getHistories () {
+export async function getHistories ({ skip = 0 }) {
   const { histories } = await graphCmsClient.request(
     `
     query {
-      histories {
+      histories(skip: ${skip}) {
         image {
           url
         }

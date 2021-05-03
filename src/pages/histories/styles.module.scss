@@ -6,10 +6,6 @@
   margin-bottom: 70px;
   transition: all $transition-time-after-normal ease $transition-time-normal;
 
-  & > div:nth-child(2n + 1) > div {
-    background: #f22259;
-  }
-
   & span {
     line-height: 1.5rem;
   }
