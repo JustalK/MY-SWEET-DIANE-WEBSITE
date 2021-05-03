@@ -2,20 +2,21 @@
 @import "@src/styles/lib/shared";
 
 .badge {
-  margin-bottom: 50px;
-  margin-top: 50px;
 
   & > div {
-    display: flex;
-    justify-content: space-between;
     width: 100%;
-    border: 1px solid #ee0a78;
-    border-radius: 5px;
-    background: #f53245;
     position: relative;
 
     & picture {
       line-height: 0;
+
+      & img {
+        border-top-right-radius: 50px;
+        border-bottom-right-radius: 50px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 50px;
+        border: 1px solid #fe6408;
+      }
     }
 
     & div {
@@ -23,18 +24,28 @@
       margin: 5px auto;
     }
 
-    & span:first-child {
+    & .date {
       position: absolute;
-      top: 64px;
-      left: -43px;
-      transform: rotate(-90deg);
-      background: black;
+      top: -10px;
+      left: 10px;
+      background: #fe6408;
       padding: 0 15px;
-      border: 1px solid #ee0a78;
+      border: 1px solid #fe6408;
     }
 
-    & span {
+    & .caption {
+      width: 150px;
       display: block;
+      margin-left: auto;
+      background: #fe6408;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 50px;
+      border-top-left-radius: 50px;
+      border-bottom-left-radius: 50px;
+      padding: 30px 10px 30px 10px;
+      text-align: right;
+      margin-top: 25px;
+      margin-bottom: 25px;
     }
   }
 }

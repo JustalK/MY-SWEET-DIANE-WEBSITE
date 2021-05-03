@@ -9,10 +9,8 @@ const CustomBadge = props => {
           <source media="(min-width:465px)" srcSet="img_white_flower.jpg" />
           <img src={props.image.url} alt="Flowers" />
         </picture>
-        <div>
-          <span>{props.date}</span>
-          <span>{props.caption}</span>
-        </div>
+        <span className={styles.caption}>{props.caption}</span>
+        <span className={styles.date}>{props.date}</span>
       </div>
     </div>
   )
