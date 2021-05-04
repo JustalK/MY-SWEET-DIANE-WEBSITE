@@ -2,7 +2,7 @@
 * The home page
 * @module pages/home
 */
-import { createRef, useEffect, useCallback } from 'react'
+import { createRef, useEffect, useRef, useCallback } from 'react'
 import { getHistories } from '@src/services/history'
 import { getPageBySlug } from '@src/services/page'
 import CustomPage from '@src/components/Pages'
@@ -35,9 +35,17 @@ export async function getStaticProps () {
 **/
 const History = ({ histories, page }) => {
   const ref = createRef()
+  const movable = useRef()
 
   const handleScroll = useCallback(() => {
-    console.log('AAA')
+    // Get the size of the movable element + the offset of the top
+    const bottomOfPage = movable.current.clientHeight + movable.current.offsetTop
+    // Get the position from the top inside the element and adding the size of the screen (careful everything is negative here)
+    const bottomOfCurrentScreen = Math.abs(movable.current.getBoundingClientRect().top - window.innerHeight)
+    const offset = 200
+    if (bottomOfPage - offset < bottomOfCurrentScreen) {
+      console.log('END OF PAGE')
+    }
   }, [])
 
   useEffect(() => {
@@ -51,7 +59,7 @@ const History = ({ histories, page }) => {
 
   return (
     <CustomPage title={page.slug} ref={ref}>
-      <div className={styles.movable}>
+      <div ref={movable} className={styles.movable}>
         <span>Histories lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</span>
         {histories.map((history, index) => (
           <CustomBadge key={history.id} caption={history.caption} date={history.date} image={history.image} />
