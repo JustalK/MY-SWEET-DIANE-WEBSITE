@@ -37,28 +37,36 @@ const History = ({ histories, page }) => {
   const ref = createRef()
   const movable = useRef()
   const [historiesLoadMore, setHistoriesLoadMore] = useState([])
+  const loadMore = useCallback(async () => {
+    console.log('LOADMORE')
+    //const result = await getHistories({})
+    //setHistoriesLoadMore(result)
+    setTimeout(() => {
+      handleScroll({ type: 'reset' })
+    }, 3000)
+  }, [])
   // Use Reducer is better in this case because the next iteration depend of the previous one
   const [isLoading, handleScroll] = useReducer((state, event) => {
-    if (!state) {
+    if (!state && event.type === 'scroll') {
       // Get the size of the movable element + the offset of the top
       const bottomOfPage = movable.current.clientHeight + movable.current.offsetTop
       // Get the position from the top inside the element and adding the size of the screen (careful everything is negative here)
       const bottomOfCurrentScreen = Math.abs(movable.current.getBoundingClientRect().top - window.innerHeight)
       const offset = 200
       if (bottomOfPage - offset < bottomOfCurrentScreen) {
-        //loadMore()
+        loadMore()
         console.log('END OF PAGE')
         return true
       }
     }
+
+    if (event.type === 'reset') {
+      console.log('RESET')
+      return false
+    }
+
     return state
   }, false)
-  console.log(isLoading)
-
-  const loadMore = useCallback(async () => {
-    const result = await getHistories({})
-    setHistoriesLoadMore(result)
-  }, [])
 
   useEffect(() => {
     ref.current.addEventListener('scroll', handleScroll)
