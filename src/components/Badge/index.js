@@ -2,7 +2,7 @@ import styles from './styles.module.scss'
 
 const CustomBadge = props => {
   return (
-    <div key={props.key} className={styles.badge}>
+    <div className={styles.badge}>
       <div>
         <picture>
           <source media="(min-width:650px)" srcSet="img_pink_flowers.jpg" />
