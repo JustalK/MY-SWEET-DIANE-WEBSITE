@@ -2,7 +2,7 @@
 * The home page
 * @module pages/home
 */
-import { createRef, useEffect, useRef, useState, useCallback } from 'react'
+import { createRef, useEffect, useRef, useState, useCallback, useReducer } from 'react'
 import { getHistories } from '@src/services/history'
 import { getPageBySlug } from '@src/services/page'
 import CustomPage from '@src/components/Pages'
@@ -37,16 +37,27 @@ const History = ({ histories, page }) => {
   const ref = createRef()
   const movable = useRef()
   const [historiesLoadMore, setHistoriesLoadMore] = useState([])
-
-  const handleScroll = useCallback(() => {
-    // Get the size of the movable element + the offset of the top
-    const bottomOfPage = movable.current.clientHeight + movable.current.offsetTop
-    // Get the position from the top inside the element and adding the size of the screen (careful everything is negative here)
-    const bottomOfCurrentScreen = Math.abs(movable.current.getBoundingClientRect().top - window.innerHeight)
-    const offset = 200
-    if (bottomOfPage - offset < bottomOfCurrentScreen) {
-      console.log('END OF PAGE')
+  // Use Reducer is better in this case because the next iteration depend of the previous one
+  const [isLoading, handleScroll] = useReducer((state, event) => {
+    if (!state) {
+      // Get the size of the movable element + the offset of the top
+      const bottomOfPage = movable.current.clientHeight + movable.current.offsetTop
+      // Get the position from the top inside the element and adding the size of the screen (careful everything is negative here)
+      const bottomOfCurrentScreen = Math.abs(movable.current.getBoundingClientRect().top - window.innerHeight)
+      const offset = 200
+      if (bottomOfPage - offset < bottomOfCurrentScreen) {
+        //loadMore()
+        console.log('END OF PAGE')
+        return true
+      }
     }
+    return state
+  }, false)
+  console.log(isLoading)
+
+  const loadMore = useCallback(async () => {
+    const result = await getHistories({})
+    setHistoriesLoadMore(result)
   }, [])
 
   useEffect(() => {
@@ -56,7 +67,7 @@ const History = ({ histories, page }) => {
         ref.current.removeEventListener('scroll', handleScroll)
       }
     }
-  }, [ref])
+  }, [handleScroll])
 
   return (
     <CustomPage title={page.slug} ref={ref}>
