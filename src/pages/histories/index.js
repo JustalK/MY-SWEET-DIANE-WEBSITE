@@ -2,7 +2,7 @@
 * The home page
 * @module pages/home
 */
-import { createRef, useEffect, useRef, useCallback } from 'react'
+import { createRef, useEffect, useRef, useState, useCallback } from 'react'
 import { getHistories } from '@src/services/history'
 import { getPageBySlug } from '@src/services/page'
 import CustomPage from '@src/components/Pages'
@@ -36,6 +36,7 @@ export async function getStaticProps () {
 const History = ({ histories, page }) => {
   const ref = createRef()
   const movable = useRef()
+  const [historiesLoadMore, setHistoriesLoadMore] = useState([])
 
   const handleScroll = useCallback(() => {
     // Get the size of the movable element + the offset of the top
@@ -62,6 +63,9 @@ const History = ({ histories, page }) => {
       <div ref={movable} className={styles.movable}>
         <span>Histories lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</span>
         {histories.map((history, index) => (
+          <CustomBadge key={history.id} caption={history.caption} date={history.date} image={history.image} />
+        ))}
+        {historiesLoadMore.map((history, index) => (
           <CustomBadge key={history.id} caption={history.caption} date={history.date} image={history.image} />
         ))}
       </div>
