@@ -1,3 +1,4 @@
+import { Hearts } from '@agney/react-loading'
 import styles from './styles.module.scss'
 
 const CustomBadge = props => {
@@ -12,7 +13,7 @@ const CustomBadge = props => {
           </picture>)
         }
         { !props.image &&
-          <div className={styles.loading} />
+          <div className={styles.loading}><Hearts width="120" /></div>
         }
         { props.caption && (<span className={styles.caption}>{props.caption}</span>)}
         <span className={styles.date}>{props.date}</span>

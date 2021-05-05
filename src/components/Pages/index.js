@@ -16,9 +16,7 @@ const CustomPage = forwardRef((props, ref) => {
         <div className={styles.content}>
           <div className={styles.borderTop} />
           <CustomNav title={props.title} />
-          <Link href={ROUTE_HISTORIES}>
-            {props.children}
-          </Link>
+          {props.children}
         </div>
       </div>
     </div>

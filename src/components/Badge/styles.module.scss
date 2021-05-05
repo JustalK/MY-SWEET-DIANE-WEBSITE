@@ -37,6 +37,9 @@
       height: 150px;
       margin: unset;
       background: $color-pink-secondary;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     & .date {
