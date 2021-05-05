@@ -10,5 +10,5 @@ import { GraphQLClient } from 'graphql-request'
 * @return {Object} The graphQlClient
 **/
 export default new GraphQLClient(
-  process.env.URL_API_GRAPHCMS
+  'https://api-ap-northeast-1.graphcms.com/v2/cklbydjc8p15k01z3fd6bhvz3/master'
 )

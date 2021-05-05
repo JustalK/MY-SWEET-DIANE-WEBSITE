@@ -34,17 +34,21 @@ export async function getStaticProps () {
 * @return {Object} The html of the home
 **/
 const History = ({ histories, page }) => {
+  let loadMoreTimer = null
   const ref = createRef()
   const movable = useRef()
   const [historiesLoadMore, setHistoriesLoadMore] = useState([])
   const loadMore = useCallback(async () => {
-    console.log('LOADMORE')
-    //const result = await getHistories({})
-    //setHistoriesLoadMore(result)
-    setTimeout(() => {
+    // Since I am using the scroll for managing the loading, it is simportant to no call this function twice
+    clearTimeout(loadMoreTimer)
+    loadMoreTimer = setTimeout(async () => {
+      console.log('LOADMORE')
+      const result = await getHistories({})
+      const moreHistory = result.props.histories
+      setHistoriesLoadMore(moreHistory)
       handleScroll({ type: 'reset' })
-    }, 3000)
-  }, [])
+    }, 100)
+  }, [loadMoreTimer])
   // Use Reducer is better in this case because the next iteration depend of the previous one
   const [isLoading, handleScroll] = useReducer((state, event) => {
     if (!state && event.type === 'scroll') {
@@ -54,8 +58,8 @@ const History = ({ histories, page }) => {
       const bottomOfCurrentScreen = Math.abs(movable.current.getBoundingClientRect().top - window.innerHeight)
       const offset = 200
       if (bottomOfPage - offset < bottomOfCurrentScreen) {
-        loadMore()
         console.log('END OF PAGE')
+        loadMore()
         return true
       }
     }
