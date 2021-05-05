@@ -11,17 +11,18 @@
  */
 
 import graphCmsClient from '@src/services/libs/graphCmsClient'
+import { MAX_HISTORIES_IN_ONE_CALL } from '@src/constants/histories'
 
 /**
 * @function getHistories
 * Get all the history from graphcms
 * @return {History[]} All the history in the database
 **/
-export const getHistories = async ({ skip = 0 }) => {
+export const getHistories = async ({ first = MAX_HISTORIES_IN_ONE_CALL, skip = 0 }) => {
   const { histories } = await graphCmsClient.request(
     `
     query {
-      histories(skip: ${skip}) {
+      histories(first: ${first}, skip: ${skip}) {
         image {
           url
         }

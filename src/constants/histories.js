@@ -1,0 +1,1 @@
+export const MAX_HISTORIES_IN_ONE_CALL = 5

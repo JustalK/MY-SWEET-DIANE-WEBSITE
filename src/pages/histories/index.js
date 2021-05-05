@@ -8,6 +8,7 @@ import { getPageBySlug } from '@src/services/page'
 import CustomPage from '@src/components/Pages'
 import CustomBadge from '@src/components/Badge'
 import styles from './styles.module.scss'
+import { MAX_HISTORIES_IN_ONE_CALL } from '@src/constants/histories'
 
 /**
 * @function getStaticProps
@@ -38,17 +39,20 @@ const History = ({ histories, page }) => {
   const ref = createRef()
   const movable = useRef()
   const [historiesLoadMore, setHistoriesLoadMore] = useState([])
+  const [skipHistories, setSkipHistories] = useState(MAX_HISTORIES_IN_ONE_CALL)
   const loadMore = useCallback(async () => {
     // Since I am using the scroll for managing the loading, it is simportant to no call this function twice
     clearTimeout(loadMoreTimer)
     loadMoreTimer = setTimeout(async () => {
-      console.log('LOADMORE')
-      const result = await getHistories({})
+      const result = await getHistories({ skip: skipHistories })
       const moreHistory = result.props.histories
-      setHistoriesLoadMore(moreHistory)
+      console.log(moreHistory)
+      setHistoriesLoadMore([...historiesLoadMore, ...moreHistory])
+      setSkipHistories(skipHistories + MAX_HISTORIES_IN_ONE_CALL)
       handleScroll({ type: 'reset' })
     }, 100)
-  }, [loadMoreTimer])
+  }, [historiesLoadMore, loadMoreTimer, skipHistories])
+
   // Use Reducer is better in this case because the next iteration depend of the previous one
   const [isLoading, handleScroll] = useReducer((state, event) => {
     if (!state && event.type === 'scroll') {
@@ -58,14 +62,12 @@ const History = ({ histories, page }) => {
       const bottomOfCurrentScreen = Math.abs(movable.current.getBoundingClientRect().top - window.innerHeight)
       const offset = 200
       if (bottomOfPage - offset < bottomOfCurrentScreen) {
-        console.log('END OF PAGE')
         loadMore()
         return true
       }
     }
 
     if (event.type === 'reset') {
-      console.log('RESET')
       return false
     }
 
@@ -86,10 +88,10 @@ const History = ({ histories, page }) => {
       <div ref={movable} className={styles.movable}>
         <span>Histories lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</span>
         {histories.map((history, index) => (
-          <CustomBadge key={history.id} caption={history.caption} date={history.date} image={history.image} />
+          <CustomBadge key={index} caption={history.caption} date={history.date} image={history.image} />
         ))}
         {historiesLoadMore.map((history, index) => (
-          <CustomBadge key={history.id} caption={history.caption} date={history.date} image={history.image} />
+          <CustomBadge key={index} caption={history.caption} date={history.date} image={history.image} />
         ))}
       </div>
     </CustomPage>
