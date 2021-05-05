@@ -6,6 +6,15 @@
   margin-bottom: 70px;
   transition: all $transition-time-after-normal ease $transition-time-normal;
 
+  .end {
+    text-align: -webkit-center;
+    width: 100%;
+    display: block;
+    color: white;
+    text-transform: uppercase;
+    margin: 70px 0;
+  }
+
   & span {
     line-height: 1.5rem;
   }

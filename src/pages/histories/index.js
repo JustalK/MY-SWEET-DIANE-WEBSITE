@@ -38,15 +38,18 @@ const History = ({ histories, page }) => {
   let loadMoreTimer = null
   const ref = createRef()
   const movable = useRef()
-  const [historiesLoadMore, setHistoriesLoadMore] = useState([])
+  const [historiesLoadMore, setHistoriesLoadMore] = useState([...histories])
   const [skipHistories, setSkipHistories] = useState(MAX_HISTORIES_IN_ONE_CALL)
+  const [isEndOfPage, setIsEndOfPage] = useState(false)
   const loadMore = useCallback(async () => {
     // Since I am using the scroll for managing the loading, it is simportant to no call this function twice
     clearTimeout(loadMoreTimer)
     loadMoreTimer = setTimeout(async () => {
       const result = await getHistories({ skip: skipHistories })
       const moreHistory = result.props.histories
-      console.log(moreHistory)
+      if (moreHistory.length < MAX_HISTORIES_IN_ONE_CALL) {
+        setIsEndOfPage(true)
+      }
       setHistoriesLoadMore([...historiesLoadMore, ...moreHistory])
       setSkipHistories(skipHistories + MAX_HISTORIES_IN_ONE_CALL)
       handleScroll({ type: 'reset' })
@@ -87,12 +90,11 @@ const History = ({ histories, page }) => {
     <CustomPage title={page.slug} ref={ref}>
       <div ref={movable} className={styles.movable}>
         <span>Histories lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum  lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</span>
-        {histories.map((history, index) => (
-          <CustomBadge key={index} caption={history.caption} date={history.date} image={history.image} />
-        ))}
         {historiesLoadMore.map((history, index) => (
           <CustomBadge key={index} caption={history.caption} date={history.date} image={history.image} />
         ))}
+        {!isEndOfPage && <CustomBadge date="Loading"/>}
+        {isEndOfPage && (<span className={styles.end}>To be continued...</span>)}
       </div>
     </CustomPage>
   )

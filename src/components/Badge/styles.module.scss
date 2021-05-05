@@ -16,6 +16,9 @@
         border-top-left-radius: 5px;
         border-bottom-left-radius: 50px;
         border: 1px solid white;
+        width: 150px;
+        height: 150px;
+        background: $color-pink-secondary;
       }
     }
 
@@ -24,11 +27,23 @@
       margin: 5px auto;
     }
 
+    & .loading {
+      border-top-right-radius: 50px;
+      border-bottom-right-radius: 50px;
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 50px;
+      border: 1px solid white;
+      width: 150px;
+      height: 150px;
+      margin: unset;
+      background: $color-pink-secondary;
+    }
+
     & .date {
       position: absolute;
       top: -10px;
       left: 10px;
-      background: #fe6408;
+      background: $color-pink-secondary;
       padding: 0 15px;
       border: 1px solid white;
     }
@@ -37,7 +52,7 @@
       width: 150px;
       display: block;
       margin-left: auto;
-      background: #fe6408;
+      background: $color-pink-secondary;
       border-top-right-radius: 5px;
       border-bottom-right-radius: 50px;
       border-top-left-radius: 50px;
