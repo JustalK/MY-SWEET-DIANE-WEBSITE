@@ -13,16 +13,16 @@ const CustomNav = (props) => {
           <CustomMenu name="Facebook" link="#">
             <Facebook />
           </CustomMenu>
-          <CustomMenu name="Home" link={ROUTE_HOME}>
+          <CustomMenu title={props.title} name="Home" link={ROUTE_HOME}>
             <Home />
           </CustomMenu>
-          <CustomMenu name="Menu" link={ROUTE_MENU}>
+          <CustomMenu title={props.title} name="Menu" link={ROUTE_MENU}>
             <Folder />
           </CustomMenu>
-          <CustomMenu name="Histories" link={ROUTE_HISTORIES}>
+          <CustomMenu title={props.title} name="Histories" link={ROUTE_HISTORIES}>
             <EmojiEmotions />
           </CustomMenu>
-          <CustomMenu name="Moments" link={ROUTE_MOMENTS}>
+          <CustomMenu title={props.title} name="Moments" link={ROUTE_MOMENTS}>
             <Favorite />
           </CustomMenu>
         </span>
