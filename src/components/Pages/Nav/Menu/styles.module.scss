@@ -9,11 +9,8 @@
   text-decoration: none;
   padding: 10px 0;
 
-  &.selected {
-    color: $color-orange-main;
-  }
-
   & svg {
+    color: white;
     transform: rotate(90deg);
     font-size: $font-size-menu;
   }
@@ -23,5 +20,11 @@
     text-transform: uppercase;
     writing-mode: vertical-rl;
     font-family: "Oswald";
+    color: white;
+  }
+
+  &.selected svg,
+  &.selected span {
+    color: #ff84bf;
   }
 }

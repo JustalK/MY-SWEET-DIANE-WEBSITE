@@ -4,7 +4,7 @@
 .nav {
   position: absolute;
   overflow: hidden;
-  background: black;
+  background: #ff3883;
   width: 50px;
   height: 100%;
   right: 0;
@@ -16,9 +16,9 @@
 
   & > div {
     height: 100%;
-    border-right: 2px solid white;
-    border-left: 2px solid white;
-    margin: 0 10px;
+    border-left: 2px solid #fb5021;
+    margin: 0 0px 0 5px;
+    background: #f11a64;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -31,7 +31,7 @@
       writing-mode: vertical-rl;
       text-transform: uppercase;
       font-size: $font-size-menu;
-      color: $color-orange-main;
+      color: #ff84bf;
     }
   }
 }
