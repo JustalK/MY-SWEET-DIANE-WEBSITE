@@ -9,8 +9,6 @@
   height: 100%;
   right: 0;
   top: 0;
-  transform: translateY(100%);
-  transition: all $transition-time-normal ease;
 
   & .menu {
     margin: $margin-mobile 0;
@@ -34,29 +32,6 @@
       text-transform: uppercase;
       font-size: $font-size-menu;
       color: $color-orange-main;
-      transform: translateX(100%);
-      transition: all $transition-time-secondary ease $delay-transition-normal;
-    }
-  }
-}
-
-:global(.page-transition-enter-done),
-:global(.page-transition-enter) {
-  .nav {
-    transform: translateY(0);
-
-    & > div > span {
-      transform: translateX(0);
-    }
-  }
-}
-
-:global(.page-transition-exit) {
-  .nav {
-    transition: all $transition-time-after-normal ease $transition-time-normal;
-
-    & > div > span {
-      transition: all $transition-time-normal;
     }
   }
 }

@@ -4,7 +4,7 @@ import { PageTransition } from 'next-page-transitions'
 
 function MyApp ({ Component, pageProps, router }) {
   return <div className={styles.container}>
-      <PageTransition timeout={850} classNames="page-transition">
+      <PageTransition timeout={1000} classNames="page-transition">
         <Component {...pageProps} />
       </PageTransition>
     </div>

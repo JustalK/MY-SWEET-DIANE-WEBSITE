@@ -8,8 +8,7 @@
   margin-bottom: 20px;
   font-size: 18px;
   z-index: $layer-over;
-  transform: translateX(-100%) translateY(350%) skewY(-25deg);
-  transition: all $transition-time-normal ease;
+  transform: skewY(-25deg);
 
   & > div {
     display: flex;
@@ -26,35 +25,11 @@
     text-transform: uppercase;
     font-size: 25px;
     color: #f63542;
-    transform: translateX(calc(-25vw + 25%)) skewX(25deg) translateY(-100%);
-    transition: all $transition-time-secondary ease $delay-transition-normal;
+    transform: translateX(calc(-25vw + 25%)) skewX(25deg);
   }
 
   & h1 {
     color: $color-pink-main;
     margin: 0 10px;
-  }
-}
-
-:global(.page-transition-enter-done),
-:global(.page-transition-enter) {
-  .title {
-    transform: skewY(-25deg);
-
-    & h1,
-    & span {
-      transform: translateX(calc(-25vw + 25%)) skewX(25deg);
-    }
-  }
-}
-
-:global(.page-transition-exit) {
-  .title {
-    transition: all $transition-time-after-normal ease $transition-time-normal;
-
-    & h1,
-    & span {
-      transition: all $transition-time-normal;
-    }
   }
 }

@@ -18,7 +18,5 @@ $font-size-back: 15px;
 
 $margin-mobile: 1rem;
 
-$transition-time-normal: 0.45s;
-$transition-time-after-normal: 0.45s;
-$delay-transition-normal: $transition-time-after-normal + $transition-time-normal;
-$transition-time-secondary: 0.25s;
+$transition-time-exit: 1s;
+$transition-time-enter: 2s;
