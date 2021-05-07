@@ -7,6 +7,7 @@ import { getHistories } from '@src/services/history'
 import { getPageBySlug } from '@src/services/page'
 import CustomPage from '@src/components/Pages'
 import CustomBadge from '@src/components/Badge'
+import CustomEnd from '@src/components/End'
 import styles from './styles.module.scss'
 import { MAX_HISTORIES_IN_ONE_CALL } from '@src/constants/histories'
 
@@ -94,7 +95,7 @@ const History = ({ page, histories }) => {
           <CustomBadge key={index} caption={history.caption} date={history.date} image={history.image} />
         ))}
         {!isEndOfPage && <CustomBadge date="Loading"/>}
-        {isEndOfPage && (<span className={styles.end}>To be continued...</span>)}
+        {isEndOfPage && <CustomEnd />}
       </div>
     </CustomPage>
   )

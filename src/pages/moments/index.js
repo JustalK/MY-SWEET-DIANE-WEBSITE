@@ -4,6 +4,7 @@
 */
 import CustomPage from '@src/components/Pages'
 import CustomCard from '@src/components/Card'
+import CustomEnd from '@src/components/End'
 import { getMoments } from '@src/services/moment'
 import { getPageBySlug } from '@src/services/page'
 import styles from './styles.module.scss'
@@ -46,6 +47,7 @@ const Moment = ({ page, moments }) => {
         {moments.map((moment, index) => (
           <CustomCard key={index} order={index + 1} caption={moment.caption} image={moment.image} />
         ))}
+         <CustomEnd />
       </div>
     </CustomPage>
   )
