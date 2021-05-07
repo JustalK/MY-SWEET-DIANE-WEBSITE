@@ -1,2 +1,8 @@
 @import "@src/styles/lib/constants";
 @import "@src/styles/lib/shared";
+
+.movable {
+  & > div:nth-child(2) {
+    margin-top: 70px;
+  }
+}

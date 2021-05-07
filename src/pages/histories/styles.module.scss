@@ -2,9 +2,6 @@
 @import "@src/styles/lib/shared";
 
 .movable {
-  margin-top: 70px;
-  margin-bottom: 70px;
-
   & > div:nth-child(2) {
     margin-top: 70px;
   }
@@ -16,9 +13,5 @@
     color: white;
     text-transform: uppercase;
     margin: 70px 0;
-  }
-
-  & span {
-    line-height: 1.5rem;
   }
 }

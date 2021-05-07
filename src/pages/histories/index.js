@@ -34,7 +34,7 @@ export async function getStaticProps () {
 * @param {Post[]} History The list of Post
 * @return {Object} The html of the home
 **/
-const History = ({ histories, page }) => {
+const History = ({ page, histories }) => {
   let loadMoreTimer = null
   const ref = createRef()
   const movable = useRef()

@@ -9,3 +9,22 @@
 .page {
   height: 100vh;
 }
+
+.movable {
+  margin-top: 70px;
+  margin-bottom: 70px;
+
+  & > span {
+    display: block;
+    text-indent: 10vw;
+    margin: 50px 0;
+
+    &::first-letter {
+        font-size: 30px;
+    }
+  }
+
+  & span {
+    line-height: 1.5rem;
+  }
+}

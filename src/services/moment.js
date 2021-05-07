@@ -17,7 +17,7 @@ import graphCmsClient from '@src/services/libs/graphCmsClient'
 * Get all the moment from graphcms
 * @return {Moment[]} All the moment in the database
 **/
-export async function getMoments () {
+export const getMoments = async () => {
   const { moments } = await graphCmsClient.request(
     `
     query {
