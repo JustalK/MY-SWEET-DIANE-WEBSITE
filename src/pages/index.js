@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect } from 'react'
 import { createAnimation, render } from '@src/helper/animation'
+import CustomTransition from '@src/components/Transition'
 import { ROUTE_MENU } from '@src/constants/routes'
 import styles from './styles.module.scss'
 
@@ -29,6 +30,7 @@ export default function Home ({ page }) {
         <link rel="icon" href="/favicon.ico" />
         <script type="text/javascript" src="/static/libs/three/three.min.js"></script>
       </Head>
+      <CustomTransition />
       <Link href={ROUTE_MENU}>
         <main id={styles.main}>
           <div>
