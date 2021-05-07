@@ -8,8 +8,10 @@ import { getPageBySlug } from '@src/services/page'
 import CustomPage from '@src/components/Pages'
 import CustomBadge from '@src/components/Badge'
 import CustomEnd from '@src/components/End'
+import CustomSlider from '@src/components/Slider'
 import styles from './styles.module.scss'
 import { MAX_HISTORIES_IN_ONE_CALL } from '@src/constants/histories'
+import { ALL_CHOICES } from '@src/constants/filters'
 
 /**
 * @function getStaticProps
@@ -37,8 +39,11 @@ export async function getStaticProps () {
 **/
 const History = ({ page, histories }) => {
   let loadMoreTimer = null
+  let changeFilterTimer = null
+  const filters = [ALL_CHOICES, 2018, 2019]
   const ref = createRef()
   const movable = useRef()
+  const [filterDate, setFilterDate] = useState({})
   const [historiesLoadMore, setHistoriesLoadMore] = useState([...histories])
   const [skipHistories, setSkipHistories] = useState(MAX_HISTORIES_IN_ONE_CALL)
   const [isEndOfPage, setIsEndOfPage] = useState(false)
@@ -87,10 +92,26 @@ const History = ({ page, histories }) => {
     }
   }, [handleScroll])
 
+  const onChange = useCallback(index => {
+    clearTimeout(changeFilterTimer)
+    changeFilterTimer = setTimeout(async () => {
+      const filterYear = filters[index] === ALL_CHOICES ? {} : { year: filters[index] }
+      const result = await getHistories({ skip: 0, ...filterYear })
+      setHistoriesLoadMore(result.props.histories)
+      setSkipHistories(MAX_HISTORIES_IN_ONE_CALL)
+      setFilterDate(filterYear)
+    }, 500)
+  }, [filters, changeFilterTimer])
+
   return (
     <CustomPage title={page.slug} ref={ref}>
       <div ref={movable} className={styles.movable}>
         <span>{page.summary}</span>
+        <CustomSlider onChange={onChange} autoplay={false}>
+          {filters.map((filter, index) => (
+            <div key={index}>{filter}</div>
+          ))}
+        </CustomSlider>
         {historiesLoadMore.map((history, index) => (
           <CustomBadge key={index} caption={history.caption} date={history.date} image={history.image} />
         ))}

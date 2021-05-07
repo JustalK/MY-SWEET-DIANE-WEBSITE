@@ -7,9 +7,12 @@ import styles from './styles.module.scss'
 const CustomSlider = (props) => {
   const settings = {
     infinite: true,
-    speed: 500,
-    autoplaySpeed: 5000,
-    autoplay: true
+    afterChange: props.onChange
+  }
+  if (props.autoplaySpeed) {
+    settings.autoplaySpeed = true
+    settings.autoplaySpeed = 5000
+    settings.speed = 500
   }
   return (
     <Slider {...settings} className={styles.slider}>
