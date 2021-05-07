@@ -1,11 +1,13 @@
+@import "@src/styles/lib/constants";
+
 .slider {
   margin: 20px 0;
 
   & > div {
-    margin: 0 -1rem;
+    margin: 0 -$margin-mobile;
     & > div > div > div {
-      margin-right:1rem;
-      margin-left:1rem;
+      margin-right: $margin-mobile;
+      margin-left: $margin-mobile;
     }
   }
 

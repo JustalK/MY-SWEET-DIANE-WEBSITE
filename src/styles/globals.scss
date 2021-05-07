@@ -44,6 +44,10 @@ body {
 	background: white;
   color: $color-text-primary;
 }
+picture {
+  line-height: 0;
+  display: block;
+}
 ol, ul {
 	list-style: none;
 }

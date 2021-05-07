@@ -2,7 +2,7 @@
 @import "@src/styles/lib/shared";
 
 .content {
-  margin: 0 calc(50px + 1rem) 0 1rem
+  margin: 0 $margin-mobile-right 0 $margin-mobile
 }
 
 .scroll {
