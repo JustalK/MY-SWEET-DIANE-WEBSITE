@@ -7,6 +7,7 @@ import { getHistories } from '@src/services/history'
 import { getPageBySlug } from '@src/services/page'
 import CustomPage from '@src/components/Pages'
 import CustomBadge from '@src/components/Badge'
+import CustomBadgeLoading from '@src/components/Badge/Loading'
 import CustomEnd from '@src/components/End'
 import CustomSlider from '@src/components/Slider'
 import CustomSlide from '@src/components/Slider/slides/Secondary'
@@ -116,7 +117,7 @@ const History = ({ page, histories }) => {
         {historiesLoadMore.map((history, index) => (
           <CustomBadge key={index} caption={history.caption} date={history.date} image={history.image} />
         ))}
-        {!isEndOfPage && <CustomBadge date="Loading"/>}
+        {!isEndOfPage && <CustomBadgeLoading />}
         {isEndOfPage && <CustomEnd />}
       </div>
     </CustomPage>

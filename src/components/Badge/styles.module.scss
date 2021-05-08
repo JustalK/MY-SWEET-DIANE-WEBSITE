@@ -9,14 +9,16 @@
 
     & picture {
       & img {
+        position: relative;
         border-top-right-radius: 50px;
         border-bottom-right-radius: 50px;
         border-top-left-radius: 5px;
         border-bottom-left-radius: 50px;
-        border: 1px solid white;
         width: 150px;
         height: 150px;
         background: $color-pink-secondary;
+        opacity: 0;
+        transition: all 0.25s ease-in-out 0.25s;
       }
     }
 
@@ -38,6 +40,12 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
+      & svg {
+        position: absolute;
+        opacity: 1;
+        transition: all 0.25s ease-in-out;
+      }
     }
 
     & .date {
@@ -47,6 +55,8 @@
       background: $color-pink-secondary;
       padding: 0 15px;
       border: 1px solid white;
+      min-width: 70px;
+      text-align: center;
     }
 
     & .caption {
@@ -63,6 +73,15 @@
       margin-top: 25px;
       margin-bottom: 25px;
       border: 1px solid white;
+    }
+
+    & .loaded {
+      & img {
+        opacity: 1;
+      }
+      & svg {
+        opacity: 0;
+      }
     }
   }
 }
