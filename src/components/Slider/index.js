@@ -15,7 +15,7 @@ const CustomSlider = (props) => {
     settings.speed = 500
   }
   return (
-    <Slider {...settings} className={styles.slider}>
+    <Slider {...settings} className={`${styles.slider} ${props.className || ''}`}>
       {props.children}
     </Slider>
   )

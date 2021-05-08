@@ -12,7 +12,7 @@
 
 import graphCmsClient from '@src/services/libs/graphCmsClient'
 import { MAX_HISTORIES_IN_ONE_CALL } from '@src/constants/histories'
-import { MINIMUM_YEAR, MAXIMUM_YEAR } from '@src/constants/filters'
+import { MINIMUM_YEAR } from '@src/constants/filters'
 
 /**
 * @function getHistories
@@ -21,12 +21,11 @@ import { MINIMUM_YEAR, MAXIMUM_YEAR } from '@src/constants/filters'
 **/
 export const getHistories = async ({ first = MAX_HISTORIES_IN_ONE_CALL, skip = 0, year = null }) => {
   const startingYear = year || MINIMUM_YEAR
-  const endingYear = year || MAXIMUM_YEAR
 
   const { histories } = await graphCmsClient.request(
     `
     query {
-      histories(first: ${first}, skip: ${skip}, where: {AND: {date_gte: "${startingYear}-01-01T00:00:00+00:00", date_lte: "${endingYear}-12-31T23:59:59+00:00"}}) {
+      histories(first: ${first}, skip: ${skip}, where: {date_gte: "${startingYear}-01-01T00:00:00+00:00"}) {
         image {
           url
         }

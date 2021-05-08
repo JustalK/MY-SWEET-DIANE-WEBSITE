@@ -9,9 +9,10 @@ import CustomPage from '@src/components/Pages'
 import CustomBadge from '@src/components/Badge'
 import CustomEnd from '@src/components/End'
 import CustomSlider from '@src/components/Slider'
+import CustomSlide from '@src/components/Slider/slides/Secondary'
 import styles from './styles.module.scss'
 import { MAX_HISTORIES_IN_ONE_CALL } from '@src/constants/histories'
-import { ALL_CHOICES } from '@src/constants/filters'
+import { MINIMUM_YEAR } from '@src/constants/filters'
 
 /**
 * @function getStaticProps
@@ -40,10 +41,10 @@ export async function getStaticProps () {
 const History = ({ page, histories }) => {
   let loadMoreTimer = null
   let changeFilterTimer = null
-  const filters = [ALL_CHOICES, 2018, 2019]
+  const filters = [MINIMUM_YEAR, 2019]
   const ref = createRef()
   const movable = useRef()
-  const [filterDate, setFilterDate] = useState({})
+  const [filterDate, setFilterDate] = useState({ year: filters[0] })
   const [historiesLoadMore, setHistoriesLoadMore] = useState([...histories])
   const [skipHistories, setSkipHistories] = useState(MAX_HISTORIES_IN_ONE_CALL)
   const [isEndOfPage, setIsEndOfPage] = useState(false)
@@ -51,7 +52,7 @@ const History = ({ page, histories }) => {
     // Since I am using the scroll for managing the loading, it is simportant to no call this function twice
     clearTimeout(loadMoreTimer)
     loadMoreTimer = setTimeout(async () => {
-      const result = await getHistories({ skip: skipHistories })
+      const result = await getHistories({ skip: skipHistories, ...filterDate })
       const moreHistory = result.props.histories
       if (moreHistory.length < MAX_HISTORIES_IN_ONE_CALL) {
         setIsEndOfPage(true)
@@ -60,7 +61,7 @@ const History = ({ page, histories }) => {
       setSkipHistories(skipHistories + MAX_HISTORIES_IN_ONE_CALL)
       handleScroll({ type: 'reset' })
     }, 100)
-  }, [historiesLoadMore, loadMoreTimer, skipHistories])
+  }, [historiesLoadMore, loadMoreTimer, skipHistories, filterDate])
 
   // Use Reducer is better in this case because the next iteration depend of the previous one
   const [isLoading, handleScroll] = useReducer((state, event) => {
@@ -95,7 +96,7 @@ const History = ({ page, histories }) => {
   const onChange = useCallback(index => {
     clearTimeout(changeFilterTimer)
     changeFilterTimer = setTimeout(async () => {
-      const filterYear = filters[index] === ALL_CHOICES ? {} : { year: filters[index] }
+      const filterYear = { year: filters[index] }
       const result = await getHistories({ skip: 0, ...filterYear })
       setHistoriesLoadMore(result.props.histories)
       setSkipHistories(MAX_HISTORIES_IN_ONE_CALL)
@@ -107,9 +108,9 @@ const History = ({ page, histories }) => {
     <CustomPage title={page.slug} ref={ref}>
       <div ref={movable} className={styles.movable}>
         <span>{page.summary}</span>
-        <CustomSlider onChange={onChange} autoplay={false}>
+        <CustomSlider onChange={onChange} autoplay={false} className={styles.slider}>
           {filters.map((filter, index) => (
-            <div key={index}>{filter}</div>
+            <CustomSlide key={index} text={filter} />
           ))}
         </CustomSlider>
         {historiesLoadMore.map((history, index) => (

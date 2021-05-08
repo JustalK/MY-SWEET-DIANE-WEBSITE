@@ -1,21 +1,6 @@
+@import "@src/styles/lib/constants";
+@import "@src/styles/lib/shared";
 
 .slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
 
-  & span {
-    margin-top: 20px;
-  }
-
-  & picture {
-    display: flex;
-    justify-content: center;
-
-    & img {
-      width: 100%;
-      border-radius: 10px;
-    }
-  }
 }
