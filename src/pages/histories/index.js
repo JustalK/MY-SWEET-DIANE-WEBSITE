@@ -100,6 +100,7 @@ const History = ({ page, histories }) => {
       const filterYear = { year: filters[index] }
       const result = await getHistories({ skip: 0, ...filterYear })
       setHistoriesLoadMore(result.props.histories)
+      setIsEndOfPage(false)
       setSkipHistories(MAX_HISTORIES_IN_ONE_CALL)
       setFilterDate(filterYear)
     }, 500)

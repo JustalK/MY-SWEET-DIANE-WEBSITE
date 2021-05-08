@@ -4,25 +4,48 @@
 .card {
   position: relative;
 
-  &::before {
-    content: " ";
-    width: 40px;
-    height: 40px;
-    transform: translate(-50%, -50%);
-    background: white;
-    position: absolute;
-    top: 0;
-    left: 50%;
-    border-radius: 50%;
-  }
 
-  & picture {
+  & .frame {
+    position: relative;
+    width: 100%;
     border-radius: 10px;
     border: 1px solid white;
+    background: $color-pink-secondary;
+    transition: all 0.25s ease-in-out 0.25s;
+
+    &::before {
+      content: " ";
+      width: 40px;
+      height: 40px;
+      transform: translate(-50%, -50%);
+      background: white;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      border-radius: 50%;
+    }
 
     & img {
       width: 100%;
       border-radius: 10px;
+      opacity: 0;
+    }
+
+    & svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.25s ease-in-out;
+    }
+  }
+
+  & .loaded {
+    & img {
+      opacity: 1;
+    }
+    & svg {
+      opacity: 0;
     }
   }
 
