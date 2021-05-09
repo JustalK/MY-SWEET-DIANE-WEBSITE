@@ -3,6 +3,7 @@
 * @module pages/menu
 */
 import { getPageBySlug } from '@src/services/page'
+import { getMenus } from '@src/services/menu'
 import CustomSlider from '@src/components/Slider'
 import CustomSlide from '@src/components/Slider/slides/Main'
 import CustomPage from '@src/components/Pages'
@@ -15,7 +16,15 @@ import styles from './styles.module.scss'
 **/
 /* istanbul ignore next */
 export async function getStaticProps () {
-  return getPageBySlug('menu')
+  const resultPage = getPageBySlug('menu')
+  const resultMenus = getMenus()
+  const result = await Promise.all([resultPage, resultMenus])
+  return {
+    props: {
+      page: result[0].props.page,
+      menus: result[1].props.menus
+    }
+  }
 }
 
 /**
@@ -23,15 +32,16 @@ export async function getStaticProps () {
 * render the menu page
 * @return {Object} The html of the menu page
 **/
-const Menu = ({ page }) => {
+const Menu = ({ page, menus }) => {
   return (
     <CustomPage title={page.slug}>
       <div className={styles.movable}>
         <span>{page.summary}</span>
         <span>{page.primaryText}</span>
         <CustomSlider>
-          <CustomSlide legend="My best moments" url="/static/1.mp4" />
-          <CustomSlide legend="My history" url="/static/2.mp4" />
+          {menus.map((menu, index) => (
+            <CustomSlide key={index} legend={menu.legend} url={menu.video.url} link={menu.link} />
+          ))}
         </CustomSlider>
         <span>{page.secondaryText}</span>
       </div>

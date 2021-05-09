@@ -12,6 +12,8 @@
     height: 280px;
     overflow: hidden;
     border-radius: 10px;
+    background: $color-pink-secondary;
+    border: 1px solid white;
 
     & > div {
       width: 100% !important;

@@ -43,26 +43,3 @@ export const getHistories = async ({ first = MAX_HISTORIES_IN_ONE_CALL, skip = 0
     }
   }
 }
-
-export const getHistoriesByYear = async ({ year }) => {
-  const { histories } = await graphCmsClient.request(
-    `
-    query {
-      histories(where: {AND: {date_gte: "${year}-01-01T00:00:00+00:00", date_lte: "${year}-12-31T23:59:59+00:00"}}) {
-        image {
-          url
-        }
-        id
-        date
-        caption
-      }
-    }
-  `
-  )
-
-  return {
-    props: {
-      histories
-    }
-  }
-}
