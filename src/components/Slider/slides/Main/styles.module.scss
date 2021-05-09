@@ -7,6 +7,22 @@
   align-items: center;
   flex-flow: column;
 
+  .player {
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+    border-radius: 10px;
+
+    & > div {
+      width: 100% !important;
+      height: initial !important;
+
+      & > video {
+        transform: translateY(-20%);
+      }
+    }
+  }
+
   & span {
     margin-top: 20px;
   }

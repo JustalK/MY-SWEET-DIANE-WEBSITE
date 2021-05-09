@@ -1,13 +1,12 @@
 import styles from './styles.module.scss'
+import ReactPlayer from 'react-player'
 
 const CustomSlide = props => {
   return (
     <div className={styles.slide}>
-      <picture>
-        <source media="(min-width:650px)" srcSet="img_pink_flowers.jpg" />
-        <source media="(min-width:465px)" srcSet="img_white_flower.jpg" />
-        <img src={props.src} alt={props.alt} />
-      </picture>
+      <div className={styles.player}>
+        <ReactPlayer url={props.url} playing={true} loop={true} />
+      </div>
       <span>{props.legend}</span>
     </div>
   )
