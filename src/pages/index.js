@@ -1,7 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect } from 'react'
-import { createAnimation, render } from '@src/helper/animation'
 import CustomTransition from '@src/components/Transition'
 import { ROUTE_MENU } from '@src/constants/routes'
 import styles from './styles.module.scss'
@@ -26,9 +25,10 @@ export default function Home ({ page }) {
   return (
     <div className={styles.page}>
       <Head>
-        <title>Static App - justalk</title>
-        <link rel="icon" href="/favicon.ico" />
-        <script type="text/javascript" src="/static/libs/three/three.min.js"></script>
+        <title>My Sweetheart Diane</title>
+        <meta name="description" content="My Sweetheart Diane" />
+        <meta name="author" content="Justal Kevin" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <CustomTransition />
       <Link href={ROUTE_MENU}>
