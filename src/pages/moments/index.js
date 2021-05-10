@@ -8,6 +8,7 @@ import CustomEnd from '@src/components/End'
 import { getMoments } from '@src/services/moment'
 import { getPageBySlug } from '@src/services/page'
 import styles from './styles.module.scss'
+import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
 
 /**
 * @function getStaticProps
@@ -29,7 +30,8 @@ export async function getStaticProps () {
     props: {
       page: result[0].props.page,
       moments: result[1].props.moments
-    }
+    },
+    revalidate: MAX_REVALIDATE_IN_SECOND
   }
 }
 

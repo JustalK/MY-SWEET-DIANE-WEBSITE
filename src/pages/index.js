@@ -4,8 +4,8 @@ import { useEffect } from 'react'
 import CustomTransition from '@src/components/Transition'
 import { ROUTE_MENU } from '@src/constants/routes'
 import styles from './styles.module.scss'
-
 import { getPageBySlug } from '@src/services/page'
+import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
 
 /**
 * @function getStaticProps
@@ -14,7 +14,13 @@ import { getPageBySlug } from '@src/services/page'
 **/
 /* istanbul ignore next */
 export async function getStaticProps () {
-  return getPageBySlug('home')
+  const resultPage = await getPageBySlug('home')
+  return {
+    props: {
+      page: resultPage.props.page
+    },
+    revalidate: MAX_REVALIDATE_IN_SECOND
+  }
 }
 
 export default function Home ({ page }) {

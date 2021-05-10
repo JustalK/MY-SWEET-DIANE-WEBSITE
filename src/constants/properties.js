@@ -1,0 +1,1 @@
+export const MAX_REVALIDATE_IN_SECOND = 60

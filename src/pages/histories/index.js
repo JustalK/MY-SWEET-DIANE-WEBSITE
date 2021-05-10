@@ -14,6 +14,7 @@ import CustomSlide from '@src/components/Slider/slides/Secondary'
 import styles from './styles.module.scss'
 import { MAX_HISTORIES_IN_ONE_CALL } from '@src/constants/histories'
 import { MINIMUM_YEAR } from '@src/constants/filters'
+import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
 
 /**
 * @function getStaticProps
@@ -29,7 +30,8 @@ export async function getStaticProps () {
     props: {
       page: result[0].props.page,
       histories: result[1].props.histories
-    }
+    },
+    revalidate: MAX_REVALIDATE_IN_SECOND
   }
 }
 

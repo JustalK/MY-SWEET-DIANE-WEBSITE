@@ -8,6 +8,7 @@ import CustomSlider from '@src/components/Slider'
 import CustomSlide from '@src/components/Slider/slides/Main'
 import CustomPage from '@src/components/Pages'
 import styles from './styles.module.scss'
+import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
 
 /**
 * @function getStaticProps
@@ -23,7 +24,8 @@ export async function getStaticProps () {
     props: {
       page: result[0].props.page,
       menus: result[1].props.menus
-    }
+    },
+    revalidate: MAX_REVALIDATE_IN_SECOND
   }
 }
 
