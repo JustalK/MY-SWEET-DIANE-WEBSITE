@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.mydaddykjournal.com
+
+# Sitemaps
+Sitemap: https://www.mydaddykjournal.com/sitemap.xml
