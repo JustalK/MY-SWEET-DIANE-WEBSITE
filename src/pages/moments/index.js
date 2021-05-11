@@ -51,9 +51,13 @@ const Moment = ({ page, moments }) => {
       </Head>
       <div className={styles.movable}>
         <span>{page.summary}</span>
-        {moments.map((moment, index) => (
-          <CustomCard key={index} order={index + 1} caption={moment.caption} image={moment.image} />
-        ))}
+        {moments.map((moment, index) => {
+          if (index > 0) {
+            return (<CustomCard defer={true} key={index} order={index + 1} caption={moment.caption} image={moment.image} />)
+          }
+
+          return (<CustomCard key={index} order={index + 1} caption={moment.caption} image={moment.image} />)
+        })}
          <CustomEnd />
       </div>
     </CustomPage>

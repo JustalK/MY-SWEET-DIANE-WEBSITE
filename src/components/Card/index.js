@@ -15,7 +15,7 @@ const CustomCard = (props) => {
 
   useEffect(async () => {
     if (props.image) {
-      setWidth(frame.current.getBoundingClientRect().width - 2)
+      setWidth(frame.current.getBoundingClientRect().width)
       getImageByUrl(props.image.url)
     }
   }, [])
@@ -25,7 +25,7 @@ const CustomCard = (props) => {
       <div ref={frame} className={`${styles.frame} ${isLoaded ? styles.loaded : ''}`} style={{ height: width + 'px' }}>
         <span className={styles.order}>{props.order}</span>
         <picture>
-          <img src={props.image.url} alt="Flowers"/>
+          <img src={props.image.url} loading={props.defer ? 'lazy' : 'eager'} alt="Flowers" height={width + 'px'} width={(width - 2) + 'px'}/>
         </picture>
         <Hearts width="120"/>
       </div>
