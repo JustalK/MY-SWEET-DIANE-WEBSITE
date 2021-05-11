@@ -2,4 +2,4 @@
 . "$(dirname "$0")/_/husky.sh"
 
 echo "[HUSKY] Run Test"
-git diff HEAD --quiet && npm run test && npm run cypress:coverage
+git diff HEAD --quiet && npm run build:test:fast && npm run cypress:coverage
