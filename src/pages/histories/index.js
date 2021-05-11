@@ -12,6 +12,7 @@ import CustomEnd from '@src/components/End'
 import CustomSlider from '@src/components/Slider'
 import CustomSlide from '@src/components/Slider/slides/Secondary'
 import styles from './styles.module.scss'
+import { getRange } from '@src/helper/utils'
 import { MAX_HISTORIES_IN_ONE_CALL } from '@src/constants/histories'
 import { MINIMUM_YEAR } from '@src/constants/filters'
 import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
@@ -44,7 +45,9 @@ export async function getStaticProps () {
 const History = ({ page, histories }) => {
   let loadMoreTimer = null
   let changeFilterTimer = null
-  const filters = [MINIMUM_YEAR, 2019]
+  const date = new Date()
+  const year = date.getFullYear()
+  const filters = getRange(MINIMUM_YEAR, year, 1)
   const ref = createRef()
   const movable = useRef()
   const [filterDate, setFilterDate] = useState({ year: filters[0] })

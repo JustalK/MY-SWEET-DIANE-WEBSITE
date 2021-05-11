@@ -7,7 +7,7 @@
   overflow: hidden;
   margin-bottom: 20px;
   font-size: 18px;
-  z-index: $layer-over;
+  z-index: $layer-over-effect;
   transform: skewY(-25deg);
 
   & > div {
@@ -26,10 +26,61 @@
     font-size: 25px;
     color: #ff80b9;
     transform: translateX(calc(-25vw + 25%)) skewX(25deg);
+    opacity: 0;
+    transition: all 0.25s ease-in-out;
   }
 
   & h1 {
     color: white;
     margin: 0 10px;
+  }
+}
+
+:global(.page-transition-enter) {
+  .title {
+    & h1,
+    & span {
+      transition: all 0.25s ease-in-out 0.25;
+      opacity: 0;
+    }
+  }
+}
+
+:global(.page-transition-enter-active) {
+  .title {
+    & h1,
+    & span {
+      transition: all 0.25s ease-in-out 0.25;
+      opacity: 1;
+    }
+  }
+}
+
+:global(.page-transition-enter-done) {
+  .title {
+    & h1,
+    & span {
+      opacity: 1;
+    }
+  }
+}
+
+:global(.page-transition-exit) {
+  .title {
+    & h1,
+    & span {
+      transition: all 0.25s ease-in-out;
+      opacity: 1;
+    }
+  }
+}
+
+:global(.page-transition-exit-active) {
+  .title {
+    & h1,
+    & span {
+      transition: all 0.25s ease-in-out;
+      opacity: 0;
+    }
   }
 }
