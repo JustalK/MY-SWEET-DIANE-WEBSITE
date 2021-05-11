@@ -33,8 +33,6 @@ export default function Home ({ page }) {
       <Head>
         <title>My Sweetheart Diane</title>
         <meta name="description" content="My Sweetheart Diane" />
-        <meta name="author" content="Justal Kevin" />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <CustomTransition />
       <Link href={ROUTE_MENU}>

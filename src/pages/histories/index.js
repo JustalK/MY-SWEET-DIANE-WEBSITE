@@ -2,6 +2,7 @@
 * The home page
 * @module pages/home
 */
+import Head from 'next/head'
 import { createRef, useEffect, useRef, useState, useCallback, useReducer } from 'react'
 import { getHistories } from '@src/services/history'
 import { getPageBySlug } from '@src/services/page'
@@ -113,6 +114,10 @@ const History = ({ page, histories }) => {
 
   return (
     <CustomPage title={page.slug} ref={ref}>
+      <Head>
+        <title>My Sweetheart Diane</title>
+        <meta name="description" content="My Sweetheart Diane" />
+      </Head>
       <div ref={movable} className={styles.movable}>
         <span>{page.summary}</span>
         <CustomSlider onChange={onChange} autoplay={false} className={styles.slider}>

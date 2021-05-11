@@ -10,7 +10,7 @@ const CustomBack = props => {
 
   return (
     <div onClick={goPreviousPage} className={styles.menu}>
-      <span><KeyboardBackspace /><span>Back</span></span>
+      <span><KeyboardBackspace /></span>
     </div>
   )
 }

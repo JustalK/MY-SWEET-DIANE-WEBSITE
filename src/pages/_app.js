@@ -1,5 +1,5 @@
 import '@src/styles/globals.scss'
-import styles from '@src/styles/App.module.scss'
+import styles from './styles.module.scss'
 import { PageTransition } from 'next-page-transitions'
 // I added those components because without the build is not working properly
 // The module css are remove to early for doing page transitions

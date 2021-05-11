@@ -14,19 +14,13 @@
   & > span {
     position: absolute;
     left: $margin-mobile;
-    top: $margin-mobile;
+    top: 0.75rem;
     display: flex;
     justify-content: center;
     align-self: center;
 
-    & > span {
-      display: flex;
-      align-items: center;
-      justify-items: center;
-      text-transform: uppercase;
-      margin-left: 4px;
-      font-size: $font-size-back;
-      font-family: "Oswald";
+    & > svg {
+      font-size: 40px;
     }
   }
 }

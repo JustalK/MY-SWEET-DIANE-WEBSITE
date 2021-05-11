@@ -10,7 +10,7 @@
   padding: 10px 0;
 
   & svg {
-    color: #ff84bf;
+    color: white;
     transform: rotate(90deg);
     font-size: $font-size-menu;
   }
@@ -20,11 +20,16 @@
     text-transform: uppercase;
     writing-mode: vertical-rl;
     font-family: "Oswald";
-    color: #ff84bf;
+    color: white;
+  }
+
+  &.selected {
+    background: white;
+    width: 50px;
   }
 
   &.selected svg,
   &.selected span {
-    color: white;
+    color: $color-pink-main;
   }
 }

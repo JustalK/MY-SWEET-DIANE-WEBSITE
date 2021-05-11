@@ -4,7 +4,7 @@
 .nav {
   position: absolute;
   overflow: hidden;
-  background: #ff3883;
+  background: white;
   width: $margin-nav;
   height: 100%;
   right: 0;
@@ -16,7 +16,6 @@
 
   & > div {
     height: 100%;
-    border-left: 2px solid #fb5021;
     margin: 0 0px 0 5px;
     background: #f11a64;
     justify-content: center;

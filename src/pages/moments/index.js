@@ -2,6 +2,7 @@
 * The home page
 * @module pages/home
 */
+import Head from 'next/head'
 import CustomPage from '@src/components/Pages'
 import CustomCard from '@src/components/Card'
 import CustomEnd from '@src/components/End'
@@ -44,6 +45,10 @@ export async function getStaticProps () {
 const Moment = ({ page, moments }) => {
   return (
     <CustomPage title={page.slug}>
+      <Head>
+        <title>My Sweetheart Diane</title>
+        <meta name="description" content="My Sweetheart Diane" />
+      </Head>
       <div className={styles.movable}>
         <span>{page.summary}</span>
         {moments.map((moment, index) => (

@@ -2,6 +2,7 @@
 * The menu page
 * @module pages/menu
 */
+import Head from 'next/head'
 import { getPageBySlug } from '@src/services/page'
 import { getMenus } from '@src/services/menu'
 import CustomSlider from '@src/components/Slider'
@@ -37,6 +38,10 @@ export async function getStaticProps () {
 const Menu = ({ page, menus }) => {
   return (
     <CustomPage title={page.slug}>
+      <Head>
+        <title>My Sweetheart Diane</title>
+        <meta name="description" content="My Sweetheart Diane" />
+      </Head>
       <div className={styles.movable}>
         <span>{page.summary}</span>
         <span>{page.primaryText}</span>
