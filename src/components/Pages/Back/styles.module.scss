@@ -24,3 +24,14 @@
     }
   }
 }
+
+@media (min-width: 768px) {
+  .menu {
+    & > span {
+      left: $margin-tablet;
+      & > svg {
+        font-size: 80px;
+      }
+    }
+  }
+}
