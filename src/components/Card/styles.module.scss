@@ -72,3 +72,12 @@
 
   }
 }
+
+@media (min-width: 768px) {
+  .card {
+    & span:not(.order) {
+      margin-bottom: 120px;
+      margin-top: 60px;
+    }
+  }
+}

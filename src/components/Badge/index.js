@@ -23,8 +23,6 @@ const CustomBadge = props => {
         { props.image &&
           <div className={`${styles.loading} ${isLoaded ? styles.loaded : ''}`}>
           <picture>
-            <source media="(min-width:650px)" srcSet="img_pink_flowers.jpg" />
-            <source media="(min-width:465px)" srcSet="img_white_flower.jpg" />
             <img src={props.image.url} alt="Flowers" />
           </picture>
           <Hearts width="120"/></div>
