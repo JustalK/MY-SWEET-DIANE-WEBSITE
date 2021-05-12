@@ -13,9 +13,15 @@
 
   .picture {
     width: 250px;
-    height: 200px;
-    background: black;
+    border: 1px solid white;
+    border-radius: $image-border;
     margin: auto auto 40px;
+
+    & img {
+      width: 250px;
+      height: 250px;
+      border-radius: $image-border;
+    }
   }
 
   .content {
@@ -26,9 +32,26 @@
   }
 
   .title {
-    font-size: 16px;
     text-align: center;
     margin-bottom: 20px;
     text-transform: capitalize;
+  }
+}
+
+@media (min-width: 768px) {
+  #main {
+    & > div {
+      margin: 0 $margin-tablet;
+    }
+
+    .picture {
+      width: 350px;
+      margin: auto auto 70px;
+
+      & img {
+        width: 350px;
+        height: 350px;
+      }
+    }
   }
 }

@@ -1,10 +1,11 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import CustomTransition from '@src/components/Transition'
 import { ROUTE_MENU } from '@src/constants/routes'
 import styles from './styles.module.scss'
 import { getPageBySlug } from '@src/services/page'
+import { getRandomNumber } from '@src/helper/random'
 import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
 
 /**
@@ -24,8 +25,10 @@ export async function getStaticProps () {
 }
 
 export default function Home ({ page }) {
+  const [random, setRandom] = useState(0)
+
   useEffect(() => {
-    // createAnimation(document.body);
+    setRandom(getRandomNumber(0, page.images.length - 1))
   }, [])
 
   return (
@@ -38,7 +41,11 @@ export default function Home ({ page }) {
       <Link href={ROUTE_MENU}>
         <main id={styles.main}>
           <div>
-            <div className={styles.picture} />
+            <div className={styles.picture}>
+              <picture>
+                <img src={page.images[random].url} alt="Flowers" />
+              </picture>
+            </div>
             <h1 className={styles.title}>{page.title}</h1>
             <span>{page.summary}</span>
           </div>

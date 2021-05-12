@@ -8,7 +8,7 @@
   & .frame {
     position: relative;
     width: 100%;
-    border-radius: 10px;
+    border-radius: $image-border;
     border: 1px solid white;
     background: $color-pink-secondary;
     transition: all 0.25s ease-in-out 0.25s;
@@ -27,7 +27,7 @@
 
     & img {
       width: 100%;
-      border-radius: 10px;
+      border-radius: $image-border;
       opacity: 0;
     }
 

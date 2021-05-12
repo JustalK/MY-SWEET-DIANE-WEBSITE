@@ -70,8 +70,16 @@ h1 {
   font-size: $font-size-title;
   font-family: "Oswald";
 }
-
 p, span {
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: $font-size-text;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: $font-size-title-tablet;
+  }
+  p, span {
+    font-size: $font-size-text-tablet;
+  }
 }
