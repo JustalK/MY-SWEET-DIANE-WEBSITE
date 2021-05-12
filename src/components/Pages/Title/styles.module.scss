@@ -6,7 +6,6 @@
   background: white;
   overflow: hidden;
   margin-bottom: 20px;
-  font-size: 18px;
   z-index: $layer-over-effect;
   transform: skewY(-25deg);
 
@@ -22,7 +21,6 @@
   & span {
     display: block;
     text-transform: uppercase;
-    font-size: 25px;
     transform: translateX(calc(-25vw + 25%)) skewX(25deg);
     opacity: 0;
     transition: all 0.25s ease-in-out;
@@ -40,6 +38,21 @@
     background: white;
     border-top: 1px solid $color-grey-main;
     border-bottom: 1px solid $color-grey-main;
+  }
+}
+
+@media (min-width: 768px) {
+  .title {
+    & h1,
+    & span {
+      height: 60px;
+      line-height: 60px;
+    }
+
+    & h1 {
+      margin: 0 50px 0 35px;
+      padding: 6px 35px;
+    }
   }
 }
 

@@ -29,3 +29,21 @@
     line-height: 1.5rem;
   }
 }
+
+@media (min-width: 768px) {
+  .movable {
+    & > span {
+      text-indent: 5vw;
+      margin: 80px 0;
+      &:last-child {
+        margin-bottom: 150px;
+      }
+    }
+
+    & span {
+      line-height: 2rem;
+    }
+
+
+  }
+}
