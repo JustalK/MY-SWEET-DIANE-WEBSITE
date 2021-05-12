@@ -25,11 +25,21 @@
 
   &.selected {
     background: white;
-    width: 50px;
+    width: $margin-nav-mobile;
   }
 
   &.selected svg,
   &.selected span {
     color: $color-pink-main;
+  }
+}
+
+
+@media (min-width: 768px) {
+  .barMenu {
+    padding: 25px 0;
+    &.selected {
+      width: $margin-nav-tablet;
+    }
   }
 }

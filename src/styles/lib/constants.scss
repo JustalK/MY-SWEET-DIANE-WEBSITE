@@ -21,8 +21,8 @@ $font-size-text: 16px;
 $font-size-back: 16px;
 
 $margin-mobile: 1rem;
-$margin-nav: 50px;
-$margin-mobile-right: calc(50px + 1rem);
+$margin-nav-mobile: 50px;
+$margin-right-mobile: calc(50px + 1rem);
 
 $image-border: 10px;
 
@@ -31,5 +31,7 @@ $transition-time-enter: 2s;
 
 // TABLET
 $margin-tablet: 4rem;
+$margin-nav-tablet: 80px;
+$margin-right-tablet: calc(80px + 4rem);
 $font-size-title-tablet: 25px;
 $font-size-text-tablet: 20px;

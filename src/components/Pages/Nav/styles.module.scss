@@ -5,7 +5,7 @@
   position: absolute;
   overflow: hidden;
   background: white;
-  width: $margin-nav;
+  width: $margin-nav-mobile;
   height: 100%;
   right: 0;
   top: 0;
@@ -32,5 +32,11 @@
       font-size: $font-size-menu;
       color: #ff84bf;
     }
+  }
+}
+
+@media (min-width: 768px) {
+  .nav {
+    width: $margin-nav-tablet;
   }
 }

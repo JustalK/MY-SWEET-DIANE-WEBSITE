@@ -61,3 +61,11 @@
     }
   }
 }
+
+@media (min-width: 768px) {
+  .slide {
+    .player {
+      height: 600px;
+    }
+  }
+}
