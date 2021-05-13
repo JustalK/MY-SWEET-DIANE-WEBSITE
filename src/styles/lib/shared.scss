@@ -9,9 +9,10 @@
 .page {
   height: 100vh;
 
-  & .desktop {
-    display: none;
-  }
+}
+
+.desktop {
+  display: none;
 }
 
 .movable {
@@ -53,13 +54,11 @@
 }
 
 @media (min-width: 1200px) {
-  .page {
-    & .mobile {
-      display: none;
-    }
+  .mobile {
+    display: none;
+  }
 
-    & .desktop {
-      display: block;
-    }
+  .desktop {
+    display: block;
   }
 }

@@ -24,3 +24,24 @@
     margin: 0 $margin-right-tablet 0 $margin-tablet
   }
 }
+
+@media (min-width: 1200px) {
+  .page {
+    max-width: 1200px;
+    margin: auto;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    h1 {
+
+    }
+    span {
+      width: 50%;
+      display: block;
+      position: relative;
+      top: 30px;
+    }
+  }
+}

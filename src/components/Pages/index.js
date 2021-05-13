@@ -10,7 +10,7 @@ const CustomPage = forwardRef((props, ref) => {
   return (
     <div>
       <CustomTransition />
-      <div className={styles.page}>
+      <div className={`${styles.page} ${styles.mobile}`}>
         <CustomTitle title={props.title} />
         <CustomBack />
         <div ref={ref} className={styles.scroll}>
@@ -19,6 +19,15 @@ const CustomPage = forwardRef((props, ref) => {
             <CustomNav title={props.title} />
             {props.children}
           </div>
+        </div>
+      </div>
+      <div className={`${styles.page} ${styles.desktop}`}>
+        <div className={styles.header}>
+          <h1>{props.title}</h1>
+          <span></span>
+        </div>
+        <div>
+          {props.children}
         </div>
       </div>
     </div>

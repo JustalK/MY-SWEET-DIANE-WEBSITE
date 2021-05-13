@@ -69,10 +69,12 @@ blockquote, q {
 h1 {
   font-size: $font-size-title;
   font-family: "Oswald";
+  user-select: none;
 }
 p, span {
   font-family: 'Open Sans Condensed', sans-serif;
   font-size: $font-size-text;
+  user-select: none;
 }
 
 @media (min-width: 768px) {
@@ -81,5 +83,12 @@ p, span {
   }
   p, span {
     font-size: $font-size-text-tablet;
+  }
+}
+
+@media (min-width: 1200px) {
+  h1 {
+    font-size: $font-size-title-desktop;
+    text-transform: uppercase;
   }
 }
