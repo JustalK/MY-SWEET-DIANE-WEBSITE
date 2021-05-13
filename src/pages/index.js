@@ -26,7 +26,7 @@ export async function getStaticProps () {
 
 export default function Home ({ page }) {
   const [random, setRandom] = useState(0)
-
+  const explodedTitle = page.title.split(' ')
   useEffect(() => {
     setRandom(getRandomNumber(0, page.images.length - 1))
   }, [])
@@ -40,7 +40,7 @@ export default function Home ({ page }) {
       <CustomTransition />
       <Link href={ROUTE_MENU}>
         <main id={styles.main}>
-          <div>
+          <div className={styles.mobile}>
             <div className={styles.picture}>
               <picture>
                 <img src={page.images[random].url} alt="Flowers" />
@@ -48,6 +48,39 @@ export default function Home ({ page }) {
             </div>
             <h1 className={styles.title}>{page.title}</h1>
             <span>{page.summary}</span>
+          </div>
+          <div className={styles.desktop}>
+            <div>
+              <h1 className={styles.title}>
+                <div>
+                  <span>{explodedTitle[0]}</span>
+                  <span>{explodedTitle[1]}</span>
+                </div>
+                <div>
+                  <span>DIANE</span>
+                </div>
+              </h1>
+              <div className={styles.content}>
+                <div>
+                  <div>
+                    <picture>
+                      <img src={page.images[0].url} alt="Flowers" />
+                    </picture>
+                  </div>
+                  <div>
+                    <picture>
+                      <img src={page.images[1].url} alt="Flowers" />
+                    </picture>
+                  </div>
+                  <div>
+                    <picture>
+                      <img src={page.images[2].url} alt="Flowers" />
+                    </picture>
+                  </div>
+                </div>
+                <span>{page.summary}</span>
+              </div>
+            </div>
           </div>
         </main>
       </Link>

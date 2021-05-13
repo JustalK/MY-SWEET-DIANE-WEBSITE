@@ -55,3 +55,64 @@
     }
   }
 }
+
+@media (min-width: 1200px) {
+  #main {
+    & > div {
+      position: relative;
+      & .title {
+        display: flex;
+
+        & div:first-child {
+          display: flex;
+          flex-direction: column;
+
+          & span {
+            text-transform: uppercase;
+            &:first-child {
+              font-size: 300px;
+            }
+
+            &:nth-child(2) {
+              font-size: 125px;
+            }
+          }
+        }
+        & div:last-child {
+          margin-left: 50px;
+
+          & span {
+            font-size: 125px;
+            position: relative;
+            top: 32px;
+          }
+        }
+      }
+      & .content {
+        position: absolute;
+        max-width: 40%;
+        right: 0;
+        top: 170px;
+        height: unset;
+        display: block;
+
+        & > div {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 20px;
+          & > div {
+              border: 1px solid white; 
+          }
+
+          & > div,
+          & img {
+            width: 70px;
+            height: 70px;
+            border-radius: 10px;
+          }
+        }
+
+      }
+    }
+  }
+}
