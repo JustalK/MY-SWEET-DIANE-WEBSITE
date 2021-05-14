@@ -28,9 +28,11 @@
 @media (min-width: 1200px) {
   .page {
     &.desktop {
-      margin-left: 5rem;
       display: flex;
       align-content: space-between;
+      & > div:not(.header) {
+        width: 100%;
+      }
       .scroll {
         overflow-x: hidden;
         height: 100vh;
@@ -42,8 +44,13 @@
 
   .header {
     display: flex;
-    align-items: center;
     width: 125px;
+    position: absolute;
+    left: calc(50% - 550px);
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    pointer-events: none;
+
     h1 {
       transform: rotateZ(-90deg) translateX(calc(-50% - 62.5px));
       transform-origin: 0 0;

@@ -62,12 +62,14 @@
     display: block;
 
     &.movable {
-      margin-top: 170px;
-      margin-bottom: 100px;
+      max-width: 1000px;
+      margin: 170px auto 100px;
 
-      & span {
-        display: block;
-        margin-bottom: 60px;
+      & .column {
+        & > span {
+          display: block;
+          margin-bottom: 60px;
+        }
       }
     }
   }
