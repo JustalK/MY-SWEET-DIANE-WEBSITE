@@ -14,3 +14,15 @@
     }
   }
 }
+
+@media (min-width: 1200px) {
+  .movable {
+    &.desktop {
+      display: flex;
+      justify-content: space-between;
+      & > div:nth-child(3) {
+        margin-top: 240px;
+      }
+    }
+  }
+}

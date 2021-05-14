@@ -66,9 +66,15 @@
       margin: 170px auto 100px;
 
       & .column {
+        width: 30%;
+
         & > span {
           display: block;
           margin-bottom: 60px;
+        }
+
+        &:first-child {
+          margin-left: 3.33%;
         }
       }
     }

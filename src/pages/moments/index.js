@@ -43,13 +43,15 @@ export async function getStaticProps () {
 * @return {Object} The html of the home
 **/
 const Moment = ({ page, moments }) => {
+  const momentsPerGroup = Math.ceil(moments.length / 3)
+  const momentsExploded = new Array(3).fill('').map((_, i) => moments.slice(i * momentsPerGroup, (i + 1) * momentsPerGroup))
   return (
     <CustomPage title={page.slug}>
       <Head>
         <title>My Sweetheart Diane</title>
         <meta name="description" content="My Sweetheart Diane" />
       </Head>
-      <div className={styles.movable}>
+      <div className={`${styles.movable} ${styles.mobile}`}>
         <span>{page.summary}</span>
         {moments.map((moment, index) => {
           if (index > 0) {
@@ -59,6 +61,24 @@ const Moment = ({ page, moments }) => {
           return (<CustomCard key={index} order={index + 1} caption={moment.caption} image={moment.image} />)
         })}
          <CustomEnd />
+      </div>
+      <div className={`${styles.movable} ${styles.desktop}`}>
+        <div className={styles.column}>
+          <span>{page.summary}</span>
+          {momentsExploded[0].map((moment, index) => {
+            return (<CustomCard key={index} order={index + 1} caption={moment.caption} image={moment.image} />)
+          })}
+        </div>
+        <div className={styles.column}>
+          {momentsExploded[1].map((moment, index) => {
+            return (<CustomCard key={index} order={index + 1 + momentsPerGroup} caption={moment.caption} image={moment.image} />)
+          })}
+        </div>
+        <div className={styles.column}>
+          {momentsExploded[2].map((moment, index) => {
+            return (<CustomCard key={index} order={index + 1 + momentsPerGroup * 2} caption={moment.caption} image={moment.image} />)
+          })}
+        </div>
       </div>
     </CustomPage>
   )
