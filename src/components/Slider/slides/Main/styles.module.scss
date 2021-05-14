@@ -73,3 +73,22 @@
     }
   }
 }
+
+@media (min-width: 1200px) {
+  .slide {
+    .player {
+      height: 350px;
+      width: calc(100% - 2px);
+
+      & > div {
+        & > video {
+          transform: unset;
+        }
+      }
+    }
+
+    & span {
+      margin-top: 50px;
+    }
+  }
+}

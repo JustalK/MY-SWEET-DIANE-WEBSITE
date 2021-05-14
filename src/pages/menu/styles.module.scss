@@ -1,2 +1,20 @@
 @import "@src/styles/lib/constants";
 @import "@src/styles/lib/shared";
+
+@media (min-width: 1200px) {
+  .movable {
+    &.desktop {
+      margin-right: 5rem;
+      display: flex;
+      justify-content: space-between;
+
+      & .column {
+        width: 30%;
+
+        &:first-child {
+          margin-left: 3.33%;
+        }
+      }
+    }
+  }
+}

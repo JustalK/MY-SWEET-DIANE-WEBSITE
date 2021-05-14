@@ -60,5 +60,15 @@
 
   .desktop {
     display: block;
+
+    &.movable {
+      margin-top: 170px;
+      margin-bottom: 100px;
+
+      & span {
+        display: block;
+        margin-bottom: 60px;
+      }
+    }
   }
 }

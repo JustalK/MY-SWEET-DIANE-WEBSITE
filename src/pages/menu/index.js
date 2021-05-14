@@ -42,7 +42,7 @@ const Menu = ({ page, menus }) => {
         <title>My Sweetheart Diane</title>
         <meta name="description" content="My Sweetheart Diane" />
       </Head>
-      <div className={styles.movable}>
+      <div className={`${styles.movable} ${styles.mobile}`}>
         <span>{page.summary}</span>
         <span>{page.primaryText}</span>
         <CustomSlider>
@@ -51,6 +51,19 @@ const Menu = ({ page, menus }) => {
           ))}
         </CustomSlider>
         <span>{page.secondaryText}</span>
+      </div>
+      <div className={`${styles.movable} ${styles.desktop}`}>
+        <div className={styles.column}>
+          <span>{page.summary}</span>
+          <CustomSlide legend={menus[0].legend} url={menus[0].video.url} link={menus[0].link} />
+        </div>
+        <div className={styles.column}>
+          <CustomSlide legend={menus[1].legend} url={menus[1].video.url} link={menus[1].link} />
+          <span>{page.primaryText}</span>
+        </div>
+        <div className={styles.column}>
+          <span>{page.secondaryText}</span>
+        </div>
       </div>
     </CustomPage>
   )

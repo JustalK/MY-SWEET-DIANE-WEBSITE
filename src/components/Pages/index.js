@@ -24,10 +24,11 @@ const CustomPage = forwardRef((props, ref) => {
       <div className={`${styles.page} ${styles.desktop}`}>
         <div className={styles.header}>
           <h1>{props.title}</h1>
-          <span></span>
         </div>
         <div>
-          {props.children}
+          <div ref={ref} className={styles.scroll}>
+            {props.children}
+          </div>
         </div>
       </div>
     </div>
