@@ -20,8 +20,8 @@
     &.desktop {
       display: flex;
       justify-content: space-between;
-      & > div:nth-child(3) {
-        margin-top: 240px;
+      & > div:nth-child(2) {
+        margin-top: unset;
       }
     }
   }

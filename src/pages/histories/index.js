@@ -118,7 +118,7 @@ const History = ({ page, histories }) => {
         <title>My Sweetheart Diane</title>
         <meta name="description" content="My Sweetheart Diane" />
       </Head>
-      <div ref={movable} className={styles.movable}>
+      <div ref={movable} className={`${styles.movable} ${styles.mobile}`}>
         <span>{page.summary}</span>
         <CustomSlider onChange={onChange} autoplay={false} className={styles.slider}>
           {filters.map((filter, index) => (
@@ -130,6 +130,14 @@ const History = ({ page, histories }) => {
         ))}
         {!isEndOfPage && <CustomBadgeLoading />}
         {isEndOfPage && <CustomEnd />}
+      </div>
+      <div className={`${styles.movable} ${styles.desktop}`}>
+        <div>
+          <span>{page.summary}</span>
+          {historiesLoadMore.map((history, index) => (
+            <CustomBadge key={index} caption={history.caption} date={history.date} image={history.image} />
+          ))}
+        </div>
       </div>
     </CustomPage>
   )

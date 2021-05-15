@@ -6,3 +6,36 @@
     margin-bottom: 70px;
   }
 }
+
+@media (min-width: 1200px) {
+  .movable {
+    &.desktop {
+      display: flex;
+      justify-content: space-between;
+
+      & > div {
+        margin-left: 3.33%;
+        & > div,
+        & > span {
+          width: 30%;
+          display: block;
+          float: left;
+          margin-bottom: 60px;
+
+          &:nth-child(n) {
+            margin-right: 3.33%;
+          }
+
+
+          &:nth-child(n + 1) {
+            margin-right: 3.33%;
+          }
+
+          &:nth-child(3n + 1) {
+            clear: both;
+          }
+        }
+      }
+    }
+  }
+}
