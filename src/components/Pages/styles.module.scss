@@ -51,6 +51,7 @@
     transform: translateX(-50%) translateY(-50%);
     pointer-events: none;
 
+    h2,
     h1 {
       transform: rotateZ(-90deg) translateX(calc(-50% - 62.5px));
       transform-origin: 0 0;

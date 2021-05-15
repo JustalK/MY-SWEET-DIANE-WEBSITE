@@ -8,6 +8,7 @@ import CustomCard from '@src/components/Card'
 import CustomEnd from '@src/components/End'
 import { getMoments } from '@src/services/moment'
 import { getPageBySlug } from '@src/services/page'
+import { getCanonicalUrl } from '@src/helper/router'
 import styles from './styles.module.scss'
 import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
 
@@ -45,11 +46,13 @@ export async function getStaticProps () {
 const Moment = ({ page, moments }) => {
   const momentsPerGroup = Math.ceil(moments.length / 3)
   const momentsExploded = new Array(3).fill('').map((_, i) => moments.slice(i * momentsPerGroup, (i + 1) * momentsPerGroup))
+
   return (
     <CustomPage title={page.slug}>
       <Head>
         <title>My Sweetheart Diane</title>
         <meta name="description" content="My Sweetheart Diane" />
+        <link rel="canonical" href={getCanonicalUrl()} />
       </Head>
       <div className={`${styles.movable} ${styles.mobile}`}>
         <span>{page.summary}</span>

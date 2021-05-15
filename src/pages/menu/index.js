@@ -9,6 +9,7 @@ import CustomSlider from '@src/components/Slider'
 import CustomSlide from '@src/components/Slider/slides/Main'
 import CustomPage from '@src/components/Pages'
 import styles from './styles.module.scss'
+import { getCanonicalUrl } from '@src/helper/router'
 import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
 
 /**
@@ -41,6 +42,7 @@ const Menu = ({ page, menus }) => {
       <Head>
         <title>My Sweetheart Diane</title>
         <meta name="description" content="My Sweetheart Diane" />
+        <link rel="canonical" href={getCanonicalUrl()} />
       </Head>
       <div className={`${styles.movable} ${styles.mobile}`}>
         <span>{page.summary}</span>

@@ -6,6 +6,7 @@ import { ROUTE_MENU } from '@src/constants/routes'
 import styles from './styles.module.scss'
 import { getPageBySlug } from '@src/services/page'
 import { getRandomNumber } from '@src/helper/random'
+import { getCanonicalUrl } from '@src/helper/router'
 import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
 
 /**
@@ -27,6 +28,7 @@ export async function getStaticProps () {
 export default function Home ({ page }) {
   const [random, setRandom] = useState(0)
   const explodedTitle = page.title.split(' ')
+
   useEffect(() => {
     setRandom(getRandomNumber(0, page.images.length - 1))
   }, [])
@@ -35,7 +37,8 @@ export default function Home ({ page }) {
     <div className={styles.page}>
       <Head>
         <title>My Sweetheart Diane</title>
-        <meta name="description" content="My Sweetheart Diane" />
+        <meta name="description" content="My Sweet Diane | Home | The journal of my Sweet and loving wife, Diane." />
+        <link rel="canonical" href={getCanonicalUrl()} />
       </Head>
       <CustomTransition />
       <Link href={ROUTE_MENU}>
@@ -51,7 +54,7 @@ export default function Home ({ page }) {
           </div>
           <div className={styles.desktop}>
             <div>
-              <h1 className={styles.title}>
+              <h2 className={styles.title}>
                 <div>
                   <span>{explodedTitle[0]}</span>
                   <span>{explodedTitle[1]}</span>
@@ -59,7 +62,7 @@ export default function Home ({ page }) {
                 <div>
                   <span>DIANE</span>
                 </div>
-              </h1>
+              </h2>
               <div className={styles.content}>
                 <div>
                   <div>
