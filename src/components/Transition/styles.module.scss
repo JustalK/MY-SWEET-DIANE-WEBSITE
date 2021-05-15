@@ -36,8 +36,10 @@
 
 @media (min-width: 1200px) {
   .transitionContainer {
-    & .transitionMovable {
-      height: 20vh;
+    & > div {
+      & .transitionMovable {
+        height: 15vh;
+      }
     }
   }
 }
