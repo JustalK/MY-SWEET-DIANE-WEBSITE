@@ -22,6 +22,7 @@ const CustomPage = forwardRef((props, ref) => {
         </div>
       </div>
       <div className={`${styles.page} ${styles.desktop}`}>
+        <CustomBack />
         <div className={styles.header}>
           <h1>{props.title}</h1>
         </div>

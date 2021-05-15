@@ -35,3 +35,36 @@
     }
   }
 }
+
+@media (min-width: 1200px) {
+  .menu {
+    clip-path: unset;
+    height: 35px;
+    top: 0;
+    width: 105px !important;
+    background: white;
+    left: calc(50% - 543px);
+    transform: translateX(-50%);
+    cursor: pointer;
+    transition: all 0.25s ease-in;
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+    border-right: 1px solid white;
+    & > span {
+      left: unset;
+      top: -5px;
+      position: relative;
+      color: $color-pink-main;
+      & > svg {
+        font-size: 45px;
+      }
+    }
+
+    &:hover {
+      background: $color-orange-main;
+      & > span {
+        color: white;
+      }
+    }
+  }
+}
