@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import CustomTransition from '@src/components/Transition'
 import { ROUTE_MENU } from '@src/constants/routes'
@@ -67,17 +68,32 @@ export default function Home ({ page }) {
                 <div>
                   <div>
                     <picture>
-                      <img src={page.images[0].url} alt="Flowers" />
+                      <Image
+                        src={page.images[0].url}
+                        alt="Flower"
+                        width={70}
+                        height={70}
+                      />
                     </picture>
                   </div>
                   <div>
                     <picture>
-                      <img src={page.images[1].url} alt="Flowers" />
+                      <Image
+                        src={page.images[1].url}
+                        alt="Flower"
+                        width={70}
+                        height={70}
+                      />
                     </picture>
                   </div>
                   <div>
                     <picture>
-                      <img src={page.images[2].url} alt="Flowers" />
+                      <Image
+                        src={page.images[2].url}
+                        alt="Flower"
+                        width={70}
+                        height={70}
+                      />
                     </picture>
                   </div>
                 </div>
