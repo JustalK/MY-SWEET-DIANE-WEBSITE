@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from 'react'
+import Image from 'next/image'
 import { Hearts } from '@agney/react-loading'
 import styles from './styles.module.scss'
 import { getImage } from '@src/helper/image'
@@ -25,7 +26,13 @@ const CustomCard = (props) => {
       <div ref={frame} className={`${styles.frame} ${isLoaded ? styles.loaded : ''}`} style={{ height: width + 'px' }}>
         <span className={styles.order}>{props.order}</span>
         <picture>
-          <img src={props.image.url} loading={props.defer ? 'lazy' : 'eager'} alt="Flowers" height={width + 'px'} width={(width - 2) + 'px'}/>
+          <Image
+            src={props.image.url}
+            loading={props.defer ? 'lazy' : 'eager'}
+            alt="Flower"
+            width={width - 2}
+            height={width}
+          />
         </picture>
         <Hearts width="120"/>
       </div>

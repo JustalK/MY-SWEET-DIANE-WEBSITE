@@ -23,7 +23,6 @@
     }
 
     & div {
-      width: calc(50% - 15px);
       margin: 5px auto;
     }
 
@@ -40,6 +39,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      overflow: hidden;
 
       & svg {
         position: absolute;

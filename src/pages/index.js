@@ -47,7 +47,12 @@ export default function Home ({ page }) {
           <div className={styles.mobile}>
             <div className={styles.picture}>
               <picture>
-                <img src={page.images[random].url} alt="Flowers" />
+                <Image
+                  src={page.images[random].url}
+                  alt="Flower"
+                  width={250}
+                  height={250}
+                />
               </picture>
             </div>
             <h1 className={styles.title}>{page.title}</h1>

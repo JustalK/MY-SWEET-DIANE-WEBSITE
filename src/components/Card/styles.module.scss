@@ -23,6 +23,7 @@
       top: 0;
       left: 50%;
       border-radius: 50%;
+      z-index: $layer-subeffect;
     }
 
     & img {
@@ -69,6 +70,7 @@
     color: $color-pink-main;
     transform: translateX(-50%);
     font-weight: 900;
+    z-index: $layer-over;
 
   }
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import Image from 'next/image'
 import { Hearts } from '@agney/react-loading'
 import { getImage } from '@src/helper/image'
 import styles from './styles.module.scss'
@@ -23,7 +24,12 @@ const CustomBadge = props => {
         { props.image &&
           <div className={`${styles.loading} ${isLoaded ? styles.loaded : ''}`}>
           <picture>
-            <img src={props.image.url} alt="Flowers" />
+            <Image
+              src={props.image.url}
+              alt="Flower"
+              width={150}
+              height={150}
+            />
           </picture>
           <Hearts width="120"/></div>
         }
