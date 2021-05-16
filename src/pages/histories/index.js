@@ -40,10 +40,11 @@ export async function getStaticProps () {
 }
 
 /**
-* @function Home
-* render the home page
-* @param {Post[]} History The list of Post
-* @return {Object} The html of the home
+* @function History
+* render the History page
+* @param {Page} page The information of the History page
+* @param {History[]} histories The list of History
+* @return {Object} The dom of the History page
 **/
 const History = ({ page, histories }) => {
   let loadMoreTimer = null
@@ -57,6 +58,11 @@ const History = ({ page, histories }) => {
   const [historiesLoadMore, setHistoriesLoadMore] = useState([...histories])
   const [skipHistories, setSkipHistories] = useState(MAX_HISTORIES_IN_ONE_CALL)
   const [isEndOfPage, setIsEndOfPage] = useState(false)
+
+  /**
+  * Load more history once we reach the end of the page
+  * I use here a setTimeout to make sure I am not calling it twice
+  **/
   const loadMore = useCallback(async () => {
     // Since I am using the scroll for managing the loading, it is simportant to no call this function twice
     clearTimeout(loadMoreTimer)

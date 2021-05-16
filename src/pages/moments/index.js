@@ -1,6 +1,6 @@
 /**
-* The home page
-* @module pages/home
+* The moment page
+* @module pages/moment
 */
 import Head from 'next/head'
 import CustomPage from '@src/components/Pages'
@@ -14,14 +14,8 @@ import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
 
 /**
 * @function getStaticProps
-* Get all the moment at build time
-* @return {Moment[]} All the moment in the database
-**/
-/* istanbul ignore next */
-/**
-* @function getStaticProps
-* Get all the histories at build time
-* @return {History[]} All the histories in the database
+* Get the Moment page at build time
+* @return {Page} Get the moment page
 **/
 /* istanbul ignore next */
 export async function getStaticProps () {
@@ -38,15 +32,20 @@ export async function getStaticProps () {
 }
 
 /**
-* @function Home
-* render the moment page
-* @param {Moment[]} moment The list of Moment
-* @return {Object} The html of the home
+* @function Moment
+* render the Moment page
+* @param {Page} page The information of the Moment page
+* @param {Moment[]} moments The list of Moment
+* @return {Object} The dom of the Moment page
 **/
 const Moment = ({ page, moments }) => {
   const momentsPerGroup = Math.ceil(moments.length / 3)
   const momentsExploded = new Array(3).fill('').map((_, i) => moments.slice(i * momentsPerGroup, (i + 1) * momentsPerGroup))
 
+  /**
+  * Create the dom for the Moment page
+  * @return {Object} Return the dom for the Moment Page
+  **/
   return (
     <CustomPage title={page.slug}>
       <Head>

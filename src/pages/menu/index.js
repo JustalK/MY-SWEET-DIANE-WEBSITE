@@ -14,8 +14,8 @@ import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
 
 /**
 * @function getStaticProps
-* Get all the moment at build time
-* @return {Moment[]} All the moment in the database
+* Get the Menu page at build time
+* @return {Page} Get the Menu page
 **/
 /* istanbul ignore next */
 export async function getStaticProps () {
@@ -33,10 +33,16 @@ export async function getStaticProps () {
 
 /**
 * @function Menu
-* render the menu page
-* @return {Object} The html of the menu page
+* render the Menu page
+* @param {Page} page The information of the Menu page
+* @param {Menu[]} menus The list of Menu
+* @return {Object} The dom of the Menu page
 **/
 const Menu = ({ page, menus }) => {
+  /**
+  * Create the dom for the Menu page
+  * @return {Object} Return the dom for the Menu Page
+  **/
   return (
     <CustomPage title={page.slug}>
       <Head>

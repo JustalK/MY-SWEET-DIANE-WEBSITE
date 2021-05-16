@@ -1,3 +1,7 @@
+/**
+* The module that will generate the Home page
+* @module pages/home
+*/
 import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -13,7 +17,7 @@ import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
 /**
 * @function getStaticProps
 * Get the page at build time
-* @return {Home[]} Get the page in the database
+* @return {Page} Get the home page
 **/
 /* istanbul ignore next */
 export async function getStaticProps () {
@@ -26,14 +30,27 @@ export async function getStaticProps () {
   }
 }
 
+/**
+* @function Home
+* Create the component Home
+* @param {Page} page The information of the Home page
+* @return {Object} Return the dom of the Home page
+**/
 export default function Home ({ page }) {
   const [random, setRandom] = useState(0)
   const explodedTitle = page.title.split(' ')
 
+  /**
+  * Function that will be called when the componnt is mounted
+  **/
   useEffect(() => {
     setRandom(getRandomNumber(0, page.images.length - 1))
   }, [])
 
+  /**
+  * Create the dom for the Home page
+  * @return {Object} Return the dom for the Home Page
+  **/
   return (
     <div className={styles.page}>
       <Head>

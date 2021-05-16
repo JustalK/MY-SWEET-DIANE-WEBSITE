@@ -1,3 +1,7 @@
+/**
+* The module that will generate the head of the page
+* @module pages/document
+*/
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 
 class MyDocument extends Document {
