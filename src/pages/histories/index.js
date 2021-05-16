@@ -73,11 +73,11 @@ const History = ({ page, histories }) => {
 
   // Use Reducer is better in this case because the next iteration depend of the previous one
   const [isLoading, handleScroll] = useReducer((state, event) => {
-    if (!state && event.type === 'scroll') {
+    if (!state && event.type === 'scroll' && ref && ref.current.getContent()) {
       // Get the size of the movable element + the offset of the top
-      const bottomOfPage = movable.current.clientHeight + movable.current.offsetTop
+      const bottomOfPage = ref.current.getContent().clientHeight + ref.current.getContent().offsetTop
       // Get the position from the top inside the element and adding the size of the screen (careful everything is negative here)
-      const bottomOfCurrentScreen = Math.abs(movable.current.getBoundingClientRect().top - window.innerHeight)
+      const bottomOfCurrentScreen = Math.abs(ref.current.getContent().getBoundingClientRect().top - window.innerHeight)
       const offset = 200
       if (bottomOfPage - offset < bottomOfCurrentScreen) {
         loadMore()
@@ -93,10 +93,10 @@ const History = ({ page, histories }) => {
   }, false)
 
   useEffect(() => {
-    ref.current.addEventListener('scroll', handleScroll)
+    ref.current.getScroll().addEventListener('scroll', handleScroll)
     return () => {
       if (ref && ref.current) {
-        ref.current.removeEventListener('scroll', handleScroll)
+        ref.current.getScroll().removeEventListener('scroll', handleScroll)
       }
     }
   }, [handleScroll])
