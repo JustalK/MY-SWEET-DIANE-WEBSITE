@@ -9,6 +9,7 @@ import styles from './styles.module.scss'
 const CustomPage = forwardRef((props, ref) => {
   const refScroll = useRef()
   const refContent = useRef()
+  const refScrollDesktop = useRef()
 
   useImperativeHandle(ref, () => ({
     getScroll: () => {
@@ -16,6 +17,9 @@ const CustomPage = forwardRef((props, ref) => {
     },
     getContent: () => {
       return refContent.current
+    },
+    getScrollDesktop: () => {
+      return refScrollDesktop.current
     }
   }))
 
@@ -39,7 +43,7 @@ const CustomPage = forwardRef((props, ref) => {
           <h2>{props.title}</h2>
         </div>
         <div>
-          <div className={styles.scroll}>
+          <div ref={refScrollDesktop} className={styles.scroll}>
             {props.children}
           </div>
         </div>

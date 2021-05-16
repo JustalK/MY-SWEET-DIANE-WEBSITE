@@ -1,0 +1,1 @@
+export const DESKTOP_MINIMUM_WIDTH = 1200

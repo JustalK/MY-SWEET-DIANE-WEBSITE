@@ -3,7 +3,7 @@
 * @module pages/home
 */
 import Head from 'next/head'
-import { createRef, useEffect, useRef, useState, useCallback, useReducer } from 'react'
+import { useEffect, useRef, useState, useCallback, useReducer } from 'react'
 import { getHistories } from '@src/services/history'
 import { getPageBySlug } from '@src/services/page'
 import CustomPage from '@src/components/Pages'
@@ -14,6 +14,7 @@ import CustomSlider from '@src/components/Slider'
 import CustomSlide from '@src/components/Slider/slides/Secondary'
 import styles from './styles.module.scss'
 import { getRange } from '@src/helper/utils'
+import { isDesktop } from '@src/helper/windows'
 import { getCanonicalUrl } from '@src/helper/router'
 import { MAX_HISTORIES_IN_ONE_CALL } from '@src/constants/histories'
 import { MINIMUM_YEAR } from '@src/constants/filters'
@@ -74,10 +75,12 @@ const History = ({ page, histories }) => {
   // Use Reducer is better in this case because the next iteration depend of the previous one
   const [isLoading, handleScroll] = useReducer((state, event) => {
     if (!state && event.type === 'scroll' && ref && ref.current.getContent()) {
+      const content = isDesktop() ? movable.current : ref.current.getContent()
+      console.log(content)
       // Get the size of the movable element + the offset of the top
-      const bottomOfPage = ref.current.getContent().clientHeight + ref.current.getContent().offsetTop
+      const bottomOfPage = content.clientHeight + content.offsetTop
       // Get the position from the top inside the element and adding the size of the screen (careful everything is negative here)
-      const bottomOfCurrentScreen = Math.abs(ref.current.getContent().getBoundingClientRect().top - window.innerHeight)
+      const bottomOfCurrentScreen = Math.abs(content.getBoundingClientRect().top - window.innerHeight)
       const offset = 200
       if (bottomOfPage - offset < bottomOfCurrentScreen) {
         loadMore()
@@ -93,11 +96,14 @@ const History = ({ page, histories }) => {
   }, false)
 
   useEffect(() => {
-    ref.current.getScroll().addEventListener('scroll', handleScroll)
+    if (isDesktop()) {
+      ref.current.getScrollDesktop().addEventListener('scroll', handleScroll)
+    } else {
+      ref.current.getScroll().addEventListener('scroll', handleScroll)
+    }
     return () => {
-      if (ref && ref.current) {
-        ref.current.getScroll().removeEventListener('scroll', handleScroll)
-      }
+      ref?.current?.getScroll()?.removeEventListener('scroll', handleScroll)
+      ref?.current?.getScrollDesktop()?.removeEventListener('scroll', handleScroll)
     }
   }, [handleScroll])
 
@@ -120,7 +126,7 @@ const History = ({ page, histories }) => {
         <meta name="description" content="My Sweetheart Diane" />
         <link rel="canonical" href={getCanonicalUrl()} />
       </Head>
-      <div ref={movable} className={`${styles.movable} ${styles.mobile}`}>
+      <div className={`${styles.movable} ${styles.mobile}`}>
         <span>{page.summary}</span>
         <CustomSlider onChange={onChange} autoplay={false} className={styles.slider}>
           {filters.map((filter, index) => (
@@ -133,7 +139,7 @@ const History = ({ page, histories }) => {
         {!isEndOfPage && <CustomBadgeLoading />}
         {isEndOfPage && <CustomEnd />}
       </div>
-      <div className={`${styles.movable} ${styles.desktop}`}>
+      <div ref={movable} className={`${styles.movable} ${styles.desktop}`}>
         <div>
           <span>{page.summary}</span>
           {historiesLoadMore.map((history, index) => (
