@@ -50,7 +50,7 @@ const History = ({ page, histories }) => {
   const date = new Date()
   const year = date.getFullYear()
   const filters = getRange(MINIMUM_YEAR, year, 1)
-  const ref = createRef()
+  const ref = useRef()
   const movable = useRef()
   const [filterDate, setFilterDate] = useState({ year: filters[0] })
   const [historiesLoadMore, setHistoriesLoadMore] = useState([...histories])
