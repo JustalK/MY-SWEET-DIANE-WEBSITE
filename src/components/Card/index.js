@@ -30,8 +30,7 @@ const CustomCard = (props) => {
             src={props.image.url}
             loading={props.defer ? 'lazy' : 'eager'}
             alt="Flower"
-            width={width - 2}
-            height={width}
+            layout='fill'
           />
         </picture>
         <Hearts width="120"/>

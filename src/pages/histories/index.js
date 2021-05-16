@@ -76,12 +76,11 @@ const History = ({ page, histories }) => {
   const [isLoading, handleScroll] = useReducer((state, event) => {
     if (!state && event.type === 'scroll' && ref && ref.current.getContent()) {
       const content = isDesktop() ? movable.current : ref.current.getContent()
-      console.log(content)
       // Get the size of the movable element + the offset of the top
       const bottomOfPage = content.clientHeight + content.offsetTop
       // Get the position from the top inside the element and adding the size of the screen (careful everything is negative here)
       const bottomOfCurrentScreen = Math.abs(content.getBoundingClientRect().top - window.innerHeight)
-      const offset = 200
+      const offset = isDesktop() ? 400 : 200
       if (bottomOfPage - offset < bottomOfCurrentScreen) {
         loadMore()
         return true
@@ -95,17 +94,33 @@ const History = ({ page, histories }) => {
     return state
   }, false)
 
-  useEffect(() => {
+  const handleResize = () => {
+    cleanScrollEvent()
     if (isDesktop()) {
       ref.current.getScrollDesktop().addEventListener('scroll', handleScroll)
     } else {
       ref.current.getScroll().addEventListener('scroll', handleScroll)
     }
+  }
+
+  useEffect(() => {
+    // IF it's a desktop we fix the even on another ref
+    if (isDesktop()) {
+      ref.current.getScrollDesktop().addEventListener('scroll', handleScroll)
+    } else {
+      ref.current.getScroll().addEventListener('scroll', handleScroll)
+    }
+    window.addEventListener('resize', handleResize)
     return () => {
-      ref?.current?.getScroll()?.removeEventListener('scroll', handleScroll)
-      ref?.current?.getScrollDesktop()?.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleResize)
+      cleanScrollEvent()
     }
   }, [handleScroll])
+
+  const cleanScrollEvent = () => {
+    ref?.current?.getScroll()?.removeEventListener('scroll', handleScroll)
+    ref?.current?.getScrollDesktop()?.removeEventListener('scroll', handleScroll)
+  }
 
   const onChange = useCallback(index => {
     clearTimeout(changeFilterTimer)
@@ -145,6 +160,8 @@ const History = ({ page, histories }) => {
           {historiesLoadMore.map((history, index) => (
             <CustomBadge key={index} caption={history.caption} date={history.date} image={history.image} />
           ))}
+          {!isEndOfPage && <CustomBadgeLoading />}
+          {isEndOfPage && <CustomEnd />}
         </div>
       </div>
     </CustomPage>
