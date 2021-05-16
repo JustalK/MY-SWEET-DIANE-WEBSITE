@@ -60,11 +60,12 @@ const History = ({ page, histories }) => {
   const [isEndOfPage, setIsEndOfPage] = useState(false)
 
   /**
-  * Load more history once we reach the end of the page
-  * I use here a setTimeout to make sure I am not calling it twice
+  * Load more histories
+  * It will add 5 more story to the actual list following the year filter chose
+  * I use a setTimeout to make sure I am not calling it twice
+  *
   **/
   const loadMore = useCallback(async () => {
-    // Since I am using the scroll for managing the loading, it is simportant to no call this function twice
     clearTimeout(loadMoreTimer)
     loadMoreTimer = setTimeout(async () => {
       const result = await getHistories({ skip: skipHistories, ...filterDate })
@@ -78,7 +79,13 @@ const History = ({ page, histories }) => {
     }, 100)
   }, [historiesLoadMore, loadMoreTimer, skipHistories, filterDate])
 
-  // Use Reducer is better in this case because the next iteration depend of the previous one
+  /**
+  * It will decide if we need to load more or not depending if we reached the bottom of the page
+  * Use Reducer is better in this case because the next iteration depend of the previous one
+  * @param {boolean} state The current value of isLoading (not depending of the value of the react vue)
+  * @param {string} event The name of the event triggering the change of state
+  * @param {boolean} Return true if more histories are being loaded
+  **/
   const [isLoading, handleScroll] = useReducer((state, event) => {
     if (!state && event.type === 'scroll' && ref && ref.current.getContent()) {
       const content = isDesktop() ? movable.current : ref.current.getContent()
@@ -100,6 +107,10 @@ const History = ({ page, histories }) => {
     return state
   }, false)
 
+  /**
+  * Handle the reference of the scroll when the user resize the website
+  * Since the desktop version and mobile version does not use the same reference
+  **/
   const handleResize = () => {
     cleanScrollEvent()
     if (isDesktop()) {
@@ -109,6 +120,9 @@ const History = ({ page, histories }) => {
     }
   }
 
+  /**
+  * Function that will be called when the componnt is mounted
+  **/
   useEffect(() => {
     // IF it's a desktop we fix the even on another ref
     if (isDesktop()) {
@@ -123,11 +137,19 @@ const History = ({ page, histories }) => {
     }
   }, [handleScroll])
 
+  /**
+  * Clean the scroll event on the reference
+  **/
   const cleanScrollEvent = () => {
     ref?.current?.getScroll()?.removeEventListener('scroll', handleScroll)
     ref?.current?.getScrollDesktop()?.removeEventListener('scroll', handleScroll)
   }
 
+  /**
+  * Handle the change made on the slider
+  * It changes the filter of year for the history
+  * @param {number} index The index of the slide of the slider
+  **/
   const onChange = useCallback(index => {
     clearTimeout(changeFilterTimer)
     changeFilterTimer = setTimeout(async () => {
