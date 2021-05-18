@@ -1,4 +1,8 @@
-# STATIC-APP
+# MY SWEET DIANE - WEBSITE
+
+![Alt text](documentation/presentation/1.png?raw=true "MY-SWEET-DIANE-WEBSITE-Website-1")
+
+![Alt text](documentation/presentation/2.png?raw=true "MY-SWEET-DIANE-WEBSITE-Website-2")
 
 [![CircleCI](https://circleci.com/gh/JustalK/STATIC-APP.svg?style=svg)](https://circleci.com/gh/JustalK/STATIC-APP)
 
@@ -11,11 +15,21 @@ Before committing, `Husky` will force the tests to be run, it will also check th
 
 I explain with all the details how I build the project and my way of working.
 
+* [Goal](#goal)
 * [Flowchart](#flowchart)
 * [Organization](#organization)
+* [Installation](#Installation)
 * [Commands](#commands)
 
+## Goal
+
+My goal on this project was to code properly a infinite scroll, playing with the call of graphCMS on next.js. I also wanted a different version for mobile and desktop. All of that while at the same time keeping the lighthouse of the google chrome console at 100%. The result is quite positive :
+
+![Alt text](documentation/presentation/3.png?raw=true "MY-SWEET-DIANE-WEBSITE-Result")
+
 ## Flowchart
+
+The navigation goes from the top of the app, we can come back to the previous page by the back button or by the menu.
 
 ![Alt text](documentation/flowchart.png?raw=true "MY-SWEET-DIANE-WEBSITE-Flowchart")
 
@@ -42,6 +56,19 @@ I explain with all the details how I build the project and my way of working.
 | pages         | the pages of the app                                    |
 | services      | the call to graphCms                                    |
 | styles        | the style of the app                                    |
+
+## Installation
+
+The easiest and fatest way to install this project is through `docker` with this command :
+
+```
+$ npm run docker
+```
+
+You can also install all the dependencies of the project by running this command at the root of the project :
+```
+$ npm install
+```
 
 ## Commands
 
