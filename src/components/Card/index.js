@@ -1,19 +1,36 @@
+/**
+* The module for the card (Moment Page)
+* @module components/card
+*/
 import { useRef, useEffect, useState } from 'react'
 import Image from 'next/image'
 import { Hearts } from '@agney/react-loading'
 import styles from './styles.module.scss'
 import { getImage } from '@src/helper/image'
 
-const CustomCard = (props) => {
+/**
+* @function CustomCard
+* render the Card component
+* @param {Object} props The props of the component
+* @return {Object} The dom of the Card component
+**/
+const CustomCard = props => {
   const [isLoaded, setIsLoaded] = useState(false)
   const [width, setWidth] = useState(false)
   const frame = useRef(null)
 
+  /**
+  * Get the image by url
+  * Once the image is loaded, set the state of isLoaded to true
+  **/
   const getImageByUrl = async url => {
     await getImage(url)
     setIsLoaded(true)
   }
 
+  /**
+  * Function that will be called when the componnt is mounted
+  **/
   useEffect(async () => {
     if (props.image) {
       setWidth(frame.current.getBoundingClientRect().width)
