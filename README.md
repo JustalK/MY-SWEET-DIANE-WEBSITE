@@ -19,6 +19,7 @@ I explain with all the details how I build the project and my way of working.
 * [Flowchart](#flowchart)
 * [Organization](#organization)
 * [Installation](#Installation)
+* [Development](#Development)
 * [Commands](#commands)
 
 ## Goal
@@ -69,6 +70,13 @@ You can also install all the dependencies of the project by running this command
 ```
 $ npm install
 ```
+
+## Development
+
+There is two branches :
+
+* **master**: This is the branch that will be deploy on the server
+* **dev**: This is the branch for developing
 
 ## Commands
 
