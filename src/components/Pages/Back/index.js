@@ -4,6 +4,7 @@
 */
 import styles from './styles.module.scss'
 import { KeyboardBackspace } from '@material-ui/icons'
+import { ROUTE_HOME, ROUTE_MENU, ROUTE_HISTORIES, ROUTE_MOMENTS } from '@src/constants/routes'
 import { useRouter } from 'next/router'
 
 /**
@@ -19,7 +20,11 @@ const CustomBack = props => {
   * Get the previous page visited from the router react
   **/
   const goPreviousPage = () => {
-    router.back()
+    if (router.asPath === ROUTE_HISTORIES || router.asPath === ROUTE_MOMENTS) {
+      router.push(ROUTE_MENU)
+    } else {
+      router.push(ROUTE_HOME)
+    }
   }
 
   return (
