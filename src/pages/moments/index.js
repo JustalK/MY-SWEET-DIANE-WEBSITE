@@ -6,6 +6,7 @@ import Head from 'next/head'
 import CustomPage from '@src/components/Pages'
 import CustomCard from '@src/components/Card'
 import CustomEnd from '@src/components/End'
+import CustomMeta from '@src/components/Meta'
 import { getMoments } from '@src/services/moment'
 import { getPageBySlug } from '@src/services/page'
 import { getCanonicalUrl } from '@src/helper/router'
@@ -52,6 +53,7 @@ const Moment = ({ page, moments }) => {
         <title>My Sweetheart Diane</title>
         <meta name="description" content="My Sweetheart Diane" />
         <link rel="canonical" href={getCanonicalUrl()} />
+        <CustomMeta />
       </Head>
       <div className={`${styles.movable} ${styles.mobile}`}>
         <span>{page.summary}</span>

@@ -8,6 +8,7 @@ import { getMenus } from '@src/services/menu'
 import CustomSlider from '@src/components/Slider'
 import CustomSlide from '@src/components/Slider/slides/Main'
 import CustomPage from '@src/components/Pages'
+import CustomMeta from '@src/components/Meta'
 import styles from './styles.module.scss'
 import { getCanonicalUrl } from '@src/helper/router'
 import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
@@ -49,6 +50,7 @@ const Menu = ({ page, menus }) => {
         <title>My Sweetheart Diane</title>
         <meta name="description" content="My Sweetheart Diane" />
         <link rel="canonical" href={getCanonicalUrl()} />
+        <CustomMeta />
       </Head>
       <div className={`${styles.movable} ${styles.mobile}`}>
         <span>{page.summary}</span>

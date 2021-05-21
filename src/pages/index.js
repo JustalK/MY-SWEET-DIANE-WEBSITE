@@ -7,6 +7,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import CustomTransition from '@src/components/Transition'
+import CustomMeta from '@src/components/Meta'
 import { ROUTE_MENU } from '@src/constants/routes'
 import styles from './styles.module.scss'
 import { getPageBySlug } from '@src/services/page'
@@ -57,6 +58,7 @@ export default function Home ({ page }) {
         <title>My Sweetheart Diane</title>
         <meta name="description" content="My Sweet Diane | Home | The journal of my Sweet and loving wife, Diane." />
         <link rel="canonical" href={getCanonicalUrl()} />
+        <CustomMeta />
       </Head>
       <CustomTransition />
       <Link href={ROUTE_MENU}>

@@ -12,6 +12,7 @@ import CustomBadgeLoading from '@src/components/Badge/Loading'
 import CustomEnd from '@src/components/End'
 import CustomSlider from '@src/components/Slider'
 import CustomSlide from '@src/components/Slider/slides/Secondary'
+import CustomMeta from '@src/components/Meta'
 import styles from './styles.module.scss'
 import { getRange } from '@src/helper/utils'
 import { isDesktop } from '@src/helper/windows'
@@ -168,6 +169,7 @@ const History = ({ page, histories }) => {
         <title>My Sweetheart Diane</title>
         <meta name="description" content="My Sweetheart Diane" />
         <link rel="canonical" href={getCanonicalUrl()} />
+        <CustomMeta />
       </Head>
       <div className={`${styles.movable} ${styles.mobile}`}>
         <span>{page.summary}</span>
