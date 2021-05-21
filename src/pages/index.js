@@ -66,7 +66,7 @@ export default function Home ({ page }) {
               <picture>
                 <Image
                   src={page.images[random].url}
-                  alt="Flower"
+                  alt={page.images[random].alt}
                   width={250}
                   height={250}
                 />
@@ -93,7 +93,7 @@ export default function Home ({ page }) {
                       <picture>
                         <Image
                           src={image.url}
-                          alt="Flower"
+                          alt={image.alt}
                           width={70}
                           height={70}
                         />
