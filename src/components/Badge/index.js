@@ -43,7 +43,7 @@ const CustomBadge = props => {
           <picture>
             <Image
               src={props.image.url}
-              alt="Flower"
+              alt={props.image.alt}
               width={150}
               height={150}
             />

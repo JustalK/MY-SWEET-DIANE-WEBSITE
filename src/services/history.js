@@ -40,6 +40,7 @@ export const getHistories = async ({ first = MAX_HISTORIES_IN_ONE_CALL, skip = 0
       histories(first: ${first}, skip: ${skip}, where: {date_gte: "${startingYear}-01-01T00:00:00+00:00"}) {
         image {
           url
+          alt
         }
         id
         date

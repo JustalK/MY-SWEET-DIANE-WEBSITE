@@ -25,6 +25,7 @@ export const getMoments = async () => {
       moments {
         image {
           url
+          alt
         }
         caption
       }
