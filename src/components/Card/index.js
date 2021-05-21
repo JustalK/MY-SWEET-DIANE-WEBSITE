@@ -46,7 +46,7 @@ const CustomCard = props => {
           <Image
             src={props.image.url}
             loading={props.defer ? 'lazy' : 'eager'}
-            alt="Flower"
+            alt={props.image.alt}
             layout='fill'
           />
         </picture>
