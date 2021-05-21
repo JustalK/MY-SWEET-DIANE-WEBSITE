@@ -83,41 +83,23 @@ export default function Home ({ page }) {
                   <span>{explodedTitle[1]}</span>
                 </div>
                 <div>
-                  <span>DIANE</span>
+                  <span>{explodedTitle[2]}</span>
                 </div>
               </h2>
               <div className={styles.content}>
                 <div>
-                  <div>
-                    <picture>
-                      <Image
-                        src={page.images[0].url}
-                        alt="Flower"
-                        width={70}
-                        height={70}
-                      />
-                    </picture>
-                  </div>
-                  <div>
-                    <picture>
-                      <Image
-                        src={page.images[1].url}
-                        alt="Flower"
-                        width={70}
-                        height={70}
-                      />
-                    </picture>
-                  </div>
-                  <div>
-                    <picture>
-                      <Image
-                        src={page.images[2].url}
-                        alt="Flower"
-                        width={70}
-                        height={70}
-                      />
-                    </picture>
-                  </div>
+                  {page.images.map((image, index) => (
+                    <div key={index}>
+                      <picture>
+                        <Image
+                          src={image.url}
+                          alt="Flower"
+                          width={70}
+                          height={70}
+                        />
+                      </picture>
+                    </div>
+                  ))}
                 </div>
                 <span>{page.summary}</span>
               </div>
