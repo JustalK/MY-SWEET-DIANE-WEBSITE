@@ -2,7 +2,6 @@
 * The home page
 * @module pages/home
 */
-import Head from 'next/head'
 import { useEffect, useRef, useState, useCallback, useReducer } from 'react'
 import { getHistories } from '@src/services/history'
 import { getPageBySlug } from '@src/services/page'
@@ -12,10 +11,11 @@ import CustomBadgeLoading from '@src/components/Badge/Loading'
 import CustomEnd from '@src/components/End'
 import CustomSlider from '@src/components/Slider'
 import CustomSlide from '@src/components/Slider/slides/Secondary'
+import CustomHead from '@src/components/Head'
 import styles from './styles.module.scss'
 import { getRange } from '@src/helper/utils'
 import { isDesktop } from '@src/helper/windows'
-import { getCanonicalUrl } from '@src/helper/router'
+import { getCurrentFullUrl } from '@src/helper/router'
 import { MAX_HISTORIES_IN_ONE_CALL } from '@src/constants/histories'
 import { MINIMUM_YEAR } from '@src/constants/filters'
 import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
@@ -164,11 +164,12 @@ const History = ({ page, histories }) => {
 
   return (
     <CustomPage title={page.slug} ref={ref}>
-      <Head>
-        <title>My Sweetheart Diane</title>
-        <meta name="description" content="My Sweetheart Diane" />
-        <link rel="canonical" href={getCanonicalUrl()} />
-      </Head>
+      <CustomHead
+        url={getCurrentFullUrl()}
+        title={page.title}
+        description={page.description}
+        image={page.images[0]}
+      />
       <div className={`${styles.movable} ${styles.mobile}`}>
         <span>{page.summary}</span>
         <CustomSlider onChange={onChange} autoplay={false} className={styles.slider}>

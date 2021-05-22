@@ -2,16 +2,16 @@
 * The module that will generate the Home page
 * @module pages/home
 */
-import Head from 'next/head'
 import Link from 'next/link'
 import Image from 'next/image'
 import { useEffect, useState } from 'react'
 import CustomTransition from '@src/components/Transition'
+import CustomHead from '@src/components/Head'
 import { ROUTE_MENU } from '@src/constants/routes'
 import styles from './styles.module.scss'
 import { getPageBySlug } from '@src/services/page'
 import { getRandomNumber } from '@src/helper/random'
-import { getCanonicalUrl } from '@src/helper/router'
+import { getCurrentFullUrl } from '@src/helper/router'
 import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
 
 /**
@@ -53,11 +53,12 @@ export default function Home ({ page }) {
   **/
   return (
     <div className={styles.page}>
-      <Head>
-        <title>My Sweetheart Diane</title>
-        <meta name="description" content="My Sweet Diane | Home | The journal of my Sweet and loving wife, Diane." />
-        <link rel="canonical" href={getCanonicalUrl()} />
-      </Head>
+      <CustomHead
+        url={getCurrentFullUrl()}
+        title={page.title}
+        description={page.description}
+        image={page.images[0]}
+      />
       <CustomTransition />
       <Link href={ROUTE_MENU}>
         <main id={styles.main}>

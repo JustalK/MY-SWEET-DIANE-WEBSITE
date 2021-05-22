@@ -5,7 +5,8 @@
 import CustomMenu from './Menu'
 import { Facebook, Home, EmojiEmotions, Favorite, Folder } from '@material-ui/icons'
 import styles from './styles.module.scss'
-import { ROUTE_MENU, ROUTE_HOME, ROUTE_HISTORIES, ROUTE_MOMENTS } from '@src/constants/routes'
+import { getCurrentFullUrl } from '@src/helper/router'
+import { ROUTE_MENU, ROUTE_HOME, ROUTE_HISTORIES, ROUTE_MOMENTS, FACEBOOK_SHARE_LINK } from '@src/constants/routes'
 
 /**
 * @function CustomNav
@@ -20,7 +21,7 @@ const CustomNav = (props) => {
       <div>
         { Array.from({ length: numberOfElements }, (v, i) => (<span key={i}>{props.title}</span>)) }
         <span className={styles.menu}>
-          <CustomMenu name="Facebook" link="#">
+          <CustomMenu name="Facebook" link={FACEBOOK_SHARE_LINK + getCurrentFullUrl()}>
             <Facebook />
           </CustomMenu>
           <CustomMenu title={props.title} name="Home" link={ROUTE_HOME}>
