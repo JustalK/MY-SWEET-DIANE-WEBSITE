@@ -14,7 +14,6 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link rel="icon" href="/favicon.ico" />
           <link
             rel="preload"
             href="/fonts/Oswald-Regular.woff2"
@@ -27,7 +26,6 @@ class MyDocument extends Document {
             as="font"
             crossOrigin=""
           />
-          <meta name="author" key='author' content="Justal Kevin" />
         </Head>
         <body>
           <Main />

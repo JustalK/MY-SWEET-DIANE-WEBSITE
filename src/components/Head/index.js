@@ -5,6 +5,7 @@
 */
 import React from 'react'
 import Head from 'next/head'
+import { COLOR_ORANGE } from '@src/constants/colors'
 
 /**
 * @function CustomHead
@@ -16,7 +17,15 @@ const CustomHead = props => {
   return (
     <Head>
       <title>{props.title}</title>
+      <meta name='author' key='author' content='Justal Kevin' />
+      <meta name='viewport' content='initial-scale=1.0, width=device-width' />
       <meta name='description' key='description' content={props.description} />
+      <meta name='theme-color' content={COLOR_ORANGE} />
+      <link rel='icon' href='/meta/icon.ico' />
+      <link rel='icon' type='image/png' href='/meta/icon_16x16.png' sizes='16x16' />
+      <link rel='icon' type='image/png' href='/meta/icon_32x32.png' sizes='32x32' />
+      <link rel='apple-touch-icon' href='/meta/icon_180x180.png' />
+      <link rel='apple-touch-icon' sizes='180x180' href='/meta/icon_180x180.png' />
       <link rel='canonical' key='canonical' href={props.url} />
       <meta property='og:url' key='og:url' content={props.url} />
       <meta property='og:title' key='og:title' content={props.title} />
