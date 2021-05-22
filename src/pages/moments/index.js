@@ -2,14 +2,13 @@
 * The moment page
 * @module pages/moment
 */
-import Head from 'next/head'
 import CustomPage from '@src/components/Pages'
 import CustomCard from '@src/components/Card'
 import CustomEnd from '@src/components/End'
-import CustomMeta from '@src/components/Meta'
+import CustomHead from '@src/components/Head'
 import { getMoments } from '@src/services/moment'
 import { getPageBySlug } from '@src/services/page'
-import { getCanonicalUrl, getCurrentFullUrl } from '@src/helper/router'
+import { getCurrentFullUrl } from '@src/helper/router'
 import styles from './styles.module.scss'
 import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
 
@@ -49,12 +48,12 @@ const Moment = ({ page, moments }) => {
   **/
   return (
     <CustomPage title={page.slug}>
-      <Head>
-        <title>My Sweetheart Diane</title>
-        <meta name="description" content="My Sweetheart Diane" />
-        <link rel="canonical" href={getCanonicalUrl()} />
-        <CustomMeta url={getCurrentFullUrl()} title={page.slug} description={page.summary} image={page.images[0]} />
-      </Head>
+      <CustomHead
+        url={getCurrentFullUrl()}
+        title={page.title}
+        description={page.description}
+        image={page.images[0]}
+      />
       <div className={`${styles.movable} ${styles.mobile}`}>
         <span>{page.summary}</span>
         {moments.map((moment, index) => {

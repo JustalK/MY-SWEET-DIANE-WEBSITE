@@ -32,6 +32,7 @@ export async function getPageBySlug (slug) {
           primaryText
           secondaryText
           title
+          description
           images {
             url
             alt
