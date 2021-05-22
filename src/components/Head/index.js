@@ -50,6 +50,11 @@ const CustomHead = props => {
       <meta property='og:image:width' key='og:width' content={props.image.width} />
       <meta property='og:image:height' key='og:height' content={props.image.height} />
       <meta property='og:image:type' key='og:type' content={props.image.mimeType} />
+      {/* Meta data of twitter */}
+      <meta name="twitter:title" content={props.title} />
+      <meta name="twitter:description" content={props.description} />
+      <meta name="twitter:image" content={props.image.url} />
+      <meta name="twitter:card" content="summary_large_image" />
     </Head>
   )
 }
