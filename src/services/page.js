@@ -35,6 +35,9 @@ export async function getPageBySlug (slug) {
           images {
             url
             alt
+            width
+            height
+            mimeType
           }
       }
     }

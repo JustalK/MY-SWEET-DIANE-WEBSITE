@@ -16,7 +16,7 @@ import CustomMeta from '@src/components/Meta'
 import styles from './styles.module.scss'
 import { getRange } from '@src/helper/utils'
 import { isDesktop } from '@src/helper/windows'
-import { getCanonicalUrl } from '@src/helper/router'
+import { getCanonicalUrl, getCurrentFullUrl } from '@src/helper/router'
 import { MAX_HISTORIES_IN_ONE_CALL } from '@src/constants/histories'
 import { MINIMUM_YEAR } from '@src/constants/filters'
 import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
@@ -169,7 +169,7 @@ const History = ({ page, histories }) => {
         <title>My Sweetheart Diane</title>
         <meta name="description" content="My Sweetheart Diane" />
         <link rel="canonical" href={getCanonicalUrl()} />
-        <CustomMeta />
+        <CustomMeta url={getCurrentFullUrl()} title={page.slug} description={page.summary} image={page.images[0]} />
       </Head>
       <div className={`${styles.movable} ${styles.mobile}`}>
         <span>{page.summary}</span>

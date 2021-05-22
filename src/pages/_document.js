@@ -27,7 +27,7 @@ class MyDocument extends Document {
             as="font"
             crossOrigin=""
           />
-          <meta name="author" content="Justal Kevin" />
+          <meta name="author" key='author' content="Justal Kevin" />
         </Head>
         <body>
           <Main />

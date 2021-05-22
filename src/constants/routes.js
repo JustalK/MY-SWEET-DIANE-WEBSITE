@@ -6,3 +6,5 @@ export const ROUTE_MENU = '/menu'
 export const ROUTE_HISTORIES = '/histories'
 /** @constant {string} ROUTE_MOMENTS The path of the Moment page */
 export const ROUTE_MOMENTS = '/moments'
+/** @constant {string} FACEBOOK_SHARE Just the link of facebook for sharing content */
+export const FACEBOOK_SHARE_LINK = 'https://www.facebook.com/sharer/sharer.php?u='

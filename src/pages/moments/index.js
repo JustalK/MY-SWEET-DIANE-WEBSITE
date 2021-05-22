@@ -9,7 +9,7 @@ import CustomEnd from '@src/components/End'
 import CustomMeta from '@src/components/Meta'
 import { getMoments } from '@src/services/moment'
 import { getPageBySlug } from '@src/services/page'
-import { getCanonicalUrl } from '@src/helper/router'
+import { getCanonicalUrl, getCurrentFullUrl } from '@src/helper/router'
 import styles from './styles.module.scss'
 import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
 
@@ -53,7 +53,7 @@ const Moment = ({ page, moments }) => {
         <title>My Sweetheart Diane</title>
         <meta name="description" content="My Sweetheart Diane" />
         <link rel="canonical" href={getCanonicalUrl()} />
-        <CustomMeta />
+        <CustomMeta url={getCurrentFullUrl()} title={page.slug} description={page.summary} image={page.images[0]} />
       </Head>
       <div className={`${styles.movable} ${styles.mobile}`}>
         <span>{page.summary}</span>

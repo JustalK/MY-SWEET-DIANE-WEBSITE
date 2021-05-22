@@ -12,7 +12,7 @@ import { ROUTE_MENU } from '@src/constants/routes'
 import styles from './styles.module.scss'
 import { getPageBySlug } from '@src/services/page'
 import { getRandomNumber } from '@src/helper/random'
-import { getCanonicalUrl } from '@src/helper/router'
+import { getCanonicalUrl, getCurrentFullUrl } from '@src/helper/router'
 import { MAX_REVALIDATE_IN_SECOND } from '@src/constants/properties'
 
 /**
@@ -56,9 +56,9 @@ export default function Home ({ page }) {
     <div className={styles.page}>
       <Head>
         <title>My Sweetheart Diane</title>
-        <meta name="description" content="My Sweet Diane | Home | The journal of my Sweet and loving wife, Diane." />
-        <link rel="canonical" href={getCanonicalUrl()} />
-        <CustomMeta />
+        <meta name="description" key='description' content="My Sweet Diane | Home | The journal of my Sweet and loving wife, Diane." />
+        <link rel="canonical" key='canonical' href={getCanonicalUrl()} />
+        <CustomMeta url={getCurrentFullUrl()} title={page.slug} description={page.summary} image={page.images[0]} />
       </Head>
       <CustomTransition />
       <Link href={ROUTE_MENU}>
