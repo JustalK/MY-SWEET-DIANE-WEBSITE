@@ -6,6 +6,8 @@
 
 [![CircleCI](https://circleci.com/gh/JustalK/STATIC-APP.svg?style=svg)](https://circleci.com/gh/JustalK/STATIC-APP)
 
+[www.justalk.life](http://www.justalk.life)
+
 This project is a website made for my wife. I made [an app for her](https://github.com/JustalK/VALENTINES-APP). It was a great project but after a few months, I was thinking about transforming my previous idea into a journal. Something were we could both go anytime and scrolling through our history from day one to the present. And so I started to create a website with `Next.js` and linked t to an admin interface my wife could use easily, `graphCms`.
 
 The continuous integration is handled with `CircleCI`. Finally, I use `Cypress` for making the e2e tests.
