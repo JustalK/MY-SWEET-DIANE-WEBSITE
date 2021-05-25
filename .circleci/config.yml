@@ -6,7 +6,9 @@ workflows:
   build:
     jobs:
       - cypress/install:
-          install: 'npm install --no-optional'
+          install-command: 'npm install --no-optional'
       - cypress/run:
+          requires:
+            - cypress/install
           start: 'npm run build:test'
           wait-on: 'http://localhost:3000/'
