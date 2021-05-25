@@ -5,6 +5,8 @@ orbs:
 workflows:
   build:
     jobs:
+      - cypress/install:
+          install: 'npm install --no-optional'
       - cypress/run:
           start: 'npm run build:test'
           wait-on: 'http://localhost:3000/'
