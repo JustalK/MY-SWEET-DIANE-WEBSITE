@@ -5,10 +5,7 @@ orbs:
 workflows:
   build:
     jobs:
-      - cypress/install:
-          install-command: 'npm install --no-package-lock --no-optional'
       - cypress/run:
-          requires:
-            - cypress/install
+          install-command: 'npm install --no-package-lock --no-optional'
           start: 'npm run build:test'
           wait-on: 'http://localhost:3000/'
