@@ -4,7 +4,7 @@
 
 ![Alt text](documentation/presentation/2.png?raw=true "MY-SWEET-DIANE-WEBSITE-Website-2")
 
-[![CircleCI](https://circleci.com/gh/JustalK/STATIC-APP.svg?style=svg)](https://circleci.com/gh/JustalK/STATIC-APP)
+[![CircleCI](https://circleci.com/gh/JustalK/MY-SWEET-DIANE-WEBSITE.svg?style=svg)](https://circleci.com/gh/JustalK/MY-SWEET-DIANE-WEBSITE)
 
 [www.justalk.life](http://www.justalk.life)
 
